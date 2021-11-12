@@ -62,82 +62,24 @@ begin
         i_data_parallel <= i_data_values(send_data_index);    -- set 1st data on i_data_parallel - see point (1) on slides
         
         wait until start'event and start='1';
+        
+        for i in 0 to 7 loop
+            tx_start <= '1';										-- i_clk transaction
+            waitclocks(i_clk, 2);
+            tx_start <= '0';	            
+        
+            wait until tx_end'event and tx_end='1';				    -- wait until SPI controller signals done with transaction
+            send_data_index <= send_data_index + 1;					-- increment to next value
+            waitclocks(i_clk, 1);
+            i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+            waitclocks(i_clk, 4);
+        end loop;
     
-        tx_start <= '1';										-- i_clk 1st transaction - see point (3) on slides
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 1st transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 1st transaction - see point (4) on slides
-        send_data_index <= send_data_index + 1;					-- increment to next value - see point (5) on slides
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);    -- set next data on i_data_parallel - see point (6) on slides
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 2nd transaction -- see point (7) on slides
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 2nd transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 2nd transaction - see point (8) on slides
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 3rd transaction - see point (9) on slides
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 3rd transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 3rd transaction - see point (10) on slides
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 4th transaction - see point (11) on slides
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 4th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 4th transaction -- see point (12) on slides
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 5th transaction - see point (13) on slides
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 5th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 5th transaction - see point (14) on slides
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 6th transaction - see point (15) on slides
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 6th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 6th transaction - see point (16) on slides
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 7th transaction - see point (17) on slides
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 7th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 7th transaction - see point (18) on slides
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 8th transaction - see point (19) on slides
+        tx_start <= '1';										-- i_clk 8th transaction
         waitclocks(i_clk, 2);
         tx_start <= '0';										-- 8th transaction i_clked
     
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 8th transaction - see point (20) on slides
+        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 8th transaction
         
                                                                 ------------------------------------------------------------------
     
@@ -147,76 +89,19 @@ begin
         i_data_parallel <= i_data_values(send_data_index);
         waitclocks(i_clk, 4);
         
-        tx_start <= '1';										-- i_clk 1st transaction
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 1st transaction i_clked
-    
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 1st transaction
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 2nd transaction
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 2nd transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 2nd transaction
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 3rd transaction
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 3rd transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 3rd transaction
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 4th transaction
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 4th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 4th transaction
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 5th transaction
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 5th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 5th transaction
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 6th transaction
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 6th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 6th transaction
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-    
-        tx_start <= '1';										-- i_clk 7th transaction
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 7th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 7th transaction
-        send_data_index <= send_data_index + 1;					-- increment to next value
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
+        
+        for i in 0 to 6 loop
+            tx_start <= '1';										-- i_clk transaction
+            waitclocks(i_clk, 2);
+            tx_start <= '0';										-- transaction i_clked
+        
+        
+            wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with transaction
+            send_data_index <= send_data_index + 1;					-- increment to next value
+            waitclocks(i_clk, 1);
+            i_data_parallel <= i_data_values(send_data_index);
+            waitclocks(i_clk, 4);
+        end loop;
     
         tx_start <= '1';										-- i_clk 8th transaction
         waitclocks(i_clk, 2);
