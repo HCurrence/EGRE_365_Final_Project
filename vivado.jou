@@ -1,0 +1,20 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Nov 12 15:14:21 2021
+# Process ID: 7396
+# Current directory: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9592 C:\Users\micha\OneDrive\Documents\GitHub\EGRE_365_Final_Project\final_project.xpr
+# Log file: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/vivado.log
+# Journal file: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.xpr
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/micha/Downloads/lab8_2019/spi_controller.vhd
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse C:/Users/micha/Downloads/lab8_2019/tb_spi_controller.vhd
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1

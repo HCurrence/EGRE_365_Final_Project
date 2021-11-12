@@ -96,7 +96,24 @@ signal slave_data_sent      : std_logic_vector(N-1 downto 0);  -- data sent by t
 begin
 
 
-DUT : spi_controller
+DUT1 : spi_controller
+  generic map(
+	N                     => N,
+	CLK_DIV               => CLK_DIV)
+  port map(
+	i_clk                       => sys_clk_sig,
+	i_rstb                      => cpu_resetn_sig,
+	i_tx_start                  => tx_start_s,
+	o_tx_end                    => tx_end_s,
+	i_data_parallel             => i_data_parallel_s,
+	o_data_parallel             => o_data_parallel_s,
+	o_sclk                      => sck_sig,
+	o_ss                        => cs_sig,
+	o_mosi                      => mosi_sig,
+	i_miso                      => miso_sig);
+	
+	
+	DUT2 : spi_controller_sm
   generic map(
 	N                     => N,
 	CLK_DIV               => CLK_DIV)
@@ -122,6 +139,8 @@ sys_clk_sig <= not sys_clk_sig after 5 ns;
 -- the SPI core to send out the required 8 transaction requests to the
 -- AD345 chip to get the acceleration data in the X, Y, and Z axes
 
+
+--not needed just alter
 master_stimulus : process
 begin
 
