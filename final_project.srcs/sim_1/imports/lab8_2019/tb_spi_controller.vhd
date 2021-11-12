@@ -48,6 +48,25 @@ generic(
 	i_miso                      : in  std_logic);
 end component;
 
+component spi_controller_sm
+generic(
+	N                     : integer := 8;      -- number of bit to serialize
+	CLK_DIV               : integer := 100 );  -- input clock divider to generate output serial clock; o_sclk frequency = i_clk/(2*CLK_DIV)
+ port (
+	start                       : in  std_logic;
+	reset                       : in  std_logic;
+	tx_end                  	: in  std_logic;  -- start TX on serial line
+	i_data_parallel             : out  std_logic_vector(N-1 downto 0);  -- data to send
+	o_data_parallel             : in std_logic_vector(N-1 downto 0);  -- received data
+	rstb                      	: out std_logic;
+	tx_start                    : out std_logic;
+	clk                      	: out std_logic;
+	xaxis_data                  : out  std_logic;
+	yaxis_data                  : out  std_logic;
+	zaxis_data                  : out  std_logic;
+	);
+end component;
+
 constant N          : integer := 16;   -- number of bits send per SPI transaction
 constant NO_VECTORS : integer := 8;    -- number of SPI transactions to simulate
 constant CLK_DIV    : integer := 100;  -- input clock divider to generate output serial clock; o_sclk frequency = i_clk/(2*CLK_DIV)
@@ -118,16 +137,18 @@ DUT1 : spi_controller
 	N                     => N,
 	CLK_DIV               => CLK_DIV)
   port map(
-	i_clk                       => sys_clk_sig,
-	i_rstb                      => cpu_resetn_sig,
-	i_tx_start                  => tx_start_s,
-	o_tx_end                    => tx_end_s,
+	start                       => sys_clk_sig,
+	reset                       => cpu_resetn_sig,
+	tx_end						=> o_tx_end
 	i_data_parallel             => i_data_parallel_s,
 	o_data_parallel             => o_data_parallel_s,
-	o_sclk                      => sck_sig,
-	o_ss                        => cs_sig,
-	o_mosi                      => mosi_sig,
-	i_miso                      => miso_sig);
+	rstb						=> i_rstb,
+	tx_start 					=> i_tx_start,
+	clk							=> i_clk,
+	xaxis_data					=> x_data_out,
+	yaxis_data					=> y_data_out,
+	zaxis_data					=> z_data_out,
+	);
 			  
 
 -- master clock and reset signals

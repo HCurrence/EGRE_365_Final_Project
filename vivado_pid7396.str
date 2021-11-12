@@ -188,3 +188,6 @@ selectCodeEditor("spi_controller.vhd", 396, 448); // bP
 // Tcl Message: update_compile_order -fileset sim_1 
 // TclEventType: DG_GRAPH_STALE
 // TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 99 MB. Current time: 11/12/21, 3:44:33 PM EST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
