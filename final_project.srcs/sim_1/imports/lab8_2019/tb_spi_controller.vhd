@@ -96,7 +96,7 @@ signal slave_data_sent      : std_logic_vector(N-1 downto 0);  -- data sent by t
 begin
 
 
-DUT : spi_controller
+DUT1 : spi_controller
   generic map(
 	N                     => N,
 	CLK_DIV               => CLK_DIV)

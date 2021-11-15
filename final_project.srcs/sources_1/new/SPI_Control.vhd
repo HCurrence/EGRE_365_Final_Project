@@ -89,7 +89,6 @@ begin
         i_data_parallel <= i_data_values(send_data_index);
         waitclocks(i_clk, 4);
         
-        
         for i in 0 to 6 loop
             tx_start <= '1';										-- i_clk transaction
             waitclocks(i_clk, 2);
