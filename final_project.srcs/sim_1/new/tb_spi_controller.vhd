@@ -55,15 +55,7 @@ generic(
 	N                     : integer := 8;      -- number of bit to serialize
 	CLK_DIV               : integer := 100 );  -- input clock divider to generate output serial clock; o_sclk frequency = i_clk/(2*CLK_DIV)
   port ( 
-  
-        i_clk                       : in  std_logic;
-        i_rstb                      : in  std_logic;
-        i_tx_start                  : in  std_logic;  -- start TX on serial line
-        o_tx_end                    : out std_logic;  -- TX data completed; o_data_parallel available
-        o_sclk                      : out std_logic;
-         o_ss                        : out std_logic;
-         o_mosi                      : out std_logic;
-         i_miso                      : in  std_logic;
+ 
          start : in std_logic;                              -- clock_divider
          reset : in std_logic;                              -- reset
          tx_end : in std_logic;                             -- o_tx_end
@@ -159,12 +151,12 @@ DUT2 : SPI_Control
   port map(
 	start                       => CLK_DIV,
 	reset                       => cpu_resetn_sig,
-	tx_end                  	=> o_tx_end,
-	o_data_parallel             => o_data_parallel,
-	clk                       	=> i_clk,
-	rstb						=> i_rstb,
+	tx_end                  	=> tx_end_s,
+	o_data_parallel             => o_data_parallel_s,
+	clk                       => i_clk,
+	i_rstb						=> rstb,
 	tx_start					=> i_tx_start,
-	i_data_parallel				=> i_data_parallel,
+	i_data_parallel				=> i_data_parallel_s,
 	xaxis_data					=> x_data_out,
 	yaxis_data					=> y_data_out,
 	zaxis_data					=> z_data_out);
