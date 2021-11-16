@@ -31,24 +31,21 @@ procedure waitclocks(signal clock : std_logic;
 end waitclocks;
 
 
-
-component spi_controller_sm
+component spi_controller
 generic(
 	N                     : integer := 8;      -- number of bit to serialize
 	CLK_DIV               : integer := 100 );  -- input clock divider to generate output serial clock; o_sclk frequency = i_clk/(2*CLK_DIV)
  port (
-	start                       : in  std_logic;
-	reset                       : in  std_logic;
-	tx_end                  	: in  std_logic;  -- start TX on serial line
-	i_data_parallel             : out  std_logic_vector(N-1 downto 0);  -- data to send
-	o_data_parallel             : in std_logic_vector(N-1 downto 0);  -- received data
-	rstb                      	: out std_logic;
-	tx_start                    : out std_logic;
-	clk                      	: out std_logic;
-	xaxis_data                  : out  std_logic;
-	yaxis_data                  : out  std_logic;
-	zaxis_data                  : out  std_logic;
-	);
+	i_clk                       : in  std_logic;
+	i_rstb                      : in  std_logic;
+	i_tx_start                  : in  std_logic;  -- start TX on serial line
+	o_tx_end                    : out std_logic;  -- TX data completed; o_data_parallel available
+	i_data_parallel             : in  std_logic_vector(N-1 downto 0);  -- data to send
+	o_data_parallel             : out std_logic_vector(N-1 downto 0);  -- received data
+	o_sclk                      : out std_logic;
+	o_ss                        : out std_logic;
+	o_mosi                      : out std_logic;
+	i_miso                      : in  std_logic);
 end component;
 
 constant N          : integer := 16;   -- number of bits send per SPI transaction
@@ -74,14 +71,12 @@ constant o_data_values : output_value_array := (std_logic_vector(to_unsigned(16#
                                                 std_logic_vector(to_unsigned(16#0035#,N)),
                                                 std_logic_vector(to_unsigned(16#0036#,N)),
                                                 std_logic_vector(to_unsigned(16#0037#,N)));
+
 signal o_data_index    : integer := 1;
 signal i_data_index    : integer := 1;
 signal send_data_index : integer := 1;
 signal count_fall      : integer := 0;
 signal count_rise      : integer := 0;
-
-
-
 signal sys_clk_sig     : STD_LOGIC:= '0';		-- start system clock at '0'
 signal cpu_resetn_sig  : STD_LOGIC := '1';		-- default for reset signal is '1'
 signal sck_sig         : STD_LOGIC;
@@ -90,14 +85,8 @@ signal mosi_sig        : STD_LOGIC;
 signal miso_sig        : STD_LOGIC;
 signal tx_start_s        : std_logic := '0';  -- default idle
 signal tx_end_s          : std_logic;
-
-
-signal o_data_parallel_s : STD_LOGIC_VECTOR(7 downto 0);
-signal i_data_parallel_s : STD_LOGIC_VECTOR(7 downto 0);
-signal xaxis_data		 : STD_LOGIC_VECTOR(15 downto 0);
-signal yaxis_data		 : STD_LOGIC_VECTOR(15 downto 0);
-signal zaxis_data		 : STD_LOGIC_VECTOR(15 downto 0);
-
+signal o_data_parallel_s : STD_LOGIC_VECTOR(15 downto 0);
+signal i_data_parallel_s : STD_LOGIC_VECTOR(15 downto 0);
 
 
 signal master_data_received : std_logic_vector(N-1 downto 0);  -- data sent by the master and received by the slave
@@ -106,36 +95,23 @@ signal slave_data_sent      : std_logic_vector(N-1 downto 0);  -- data sent by t
  
 begin
 
-	
-	
-	DUT : spi_controller_sm
+
+DUT : spi_controller
   generic map(
 	N                     => N,
 	CLK_DIV               => CLK_DIV)
   port map(
-	start                       => sys_clk_sig,
-	reset                       => cpu_resetn_sig,
-	tx_end						=> o_tx_end
+	i_clk                       => sys_clk_sig,
+	i_rstb                      => cpu_resetn_sig,
+	i_tx_start                  => tx_start_s,
+	o_tx_end                    => tx_end_s,
 	i_data_parallel             => i_data_parallel_s,
 	o_data_parallel             => o_data_parallel_s,
-	rstb						=> i_rstb,
-	tx_start 					=> i_tx_start,
-	clk							=> i_clk,
-	xaxis_data					=> x_data_out,
-	yaxis_data					=> y_data_out,
-	zaxis_data					=> z_data_out,
-	);
-	
-	
+	o_sclk                      => sck_sig,
+	o_ss                        => cs_sig,
+	o_mosi                      => mosi_sig,
+	i_miso                      => miso_sig);
 			  
-
-
-CLK_DIV: ENTITY 
-generic map(DIVISOR : positive := 10000000);
-port map( mclk => sys_clk_sig,
-		sck=> istart_sig);
-
-	 
 
 -- master clock and reset signals
 
@@ -146,8 +122,6 @@ sys_clk_sig <= not sys_clk_sig after 5 ns;
 -- the SPI core to send out the required 8 transaction requests to the
 -- AD345 chip to get the acceleration data in the X, Y, and Z axes
 
-
---not needed just alter
 master_stimulus : process
 begin
 

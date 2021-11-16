@@ -207,3 +207,16 @@ closeView(PAResourceOtoP.PAViews_CODE, "Code"); // F
 // HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 90 MB. Current time: 11/12/21, 4:44:34 PM EST
 // TclEventType: DG_GRAPH_STALE
 // TclEventType: FILE_SET_CHANGE
+// WARNING: HEventQueue.dispatchEvent() is taking  6810 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 8901 ms. Increasing delay to 26703 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 4 ms. Decreasing delay to 2004 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  2474 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 4334 ms. Increasing delay to 13002 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 2 ms. Decreasing delay to 2002 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 90 MB. Current time: 11/12/21, 5:14:35 PM EST
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 1219976 ms. Increasing delay to 3659928 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 90 MB. Current time: 11/12/21, 5:44:39 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 89 MB. Current time: 11/12/21, 8:58:44 PM EST
+// WARNING: HEventQueue.dispatchEvent() is taking  256533460 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  6019 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 89 MB. Current time: 11/15/21, 8:14:41 PM EST
