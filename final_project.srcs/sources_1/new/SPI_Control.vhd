@@ -3,11 +3,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity SPI_Control is
-  port ( start : in std_logic;                              -- clock_divider
+  port ( -- Inputs --
+         start : in std_logic;                              -- clock_divider
          reset : in std_logic;                              -- reset
          tx_end : in std_logic;                             -- o_tx_end
          o_data_parallel: in std_logic_vector(7 downto 0); -- o_data_parallel
          i_clk : in std_logic;  -- temp: input clock
+         -- Outputs --
          clk : out std_logic;                               -- i_clk
          rstb : out std_logic;                              -- i_rstb?
          tx_start : out std_logic;                          -- i_tx_start
