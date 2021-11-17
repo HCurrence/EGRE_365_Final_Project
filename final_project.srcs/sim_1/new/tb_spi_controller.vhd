@@ -53,9 +53,7 @@ component SPI_Control
          reset : in std_logic;                              -- reset
          tx_end : in std_logic;                             -- o_tx_end
          o_data_parallel: in std_logic_vector(15 downto 0); -- o_data_parallel
-         i_clk : in std_logic;  -- temp: input clock
-         clk : out std_logic;                               -- i_clk
-         rstb : out std_logic;                              -- i_rstb?
+         i_clk : in std_logic;                              -- clock
          tx_start : out std_logic;                          -- i_tx_start
          i_data_parallel : out std_logic_vector(15 downto 0); --i_data_parallel
          xaxis_data : out std_logic_vector(15 downto 0);    -- x data out
@@ -110,7 +108,7 @@ signal y_data_out : STD_LOGIC_VECTOR(15 downto 0);
 signal z_data_out : STD_LOGIC_VECTOR(15 downto 0);
 
 signal slow_clk : std_logic;
-signal i_rstb : std_logic;
+signal i_rstb : std_logic := '1';
 
 signal master_data_received : std_logic_vector(N-1 downto 0);  -- data sent by the master and received by the slave
 signal slave_data_sent      : std_logic_vector(N-1 downto 0);  -- data sent by the slave and received by the master
@@ -149,16 +147,25 @@ clk_divider : entity work.clock_divider(behavior)
 DUT2 : SPI_Control
   port map(
 	start                       => slow_clk,
-	reset                       => cpu_resetn_sig,
+	reset                       => i_rstb,
 	tx_end                  	=> tx_end_s,
 	o_data_parallel             => o_data_parallel_s,
 	i_clk                         => sys_clk_sig,
-	rstb						=> i_rstb,
 	tx_start					=> tx_start_s,
 	i_data_parallel				=> i_data_parallel_s,
 	xaxis_data					=> x_data_out,
 	yaxis_data					=> y_data_out,
 	zaxis_data					=> z_data_out);
+	
+	
+reset_process : process
+begin
+        i_rstb  <= '0';
+        wait for 10 ns;
+        i_rstb  <= '1';
+        wait;
+    --end if;
+end process reset_process;
 	
 	
 -- Simulation of an SPI slave replying to the master
