@@ -48,18 +48,12 @@ generic(
 	i_miso                      : in  std_logic);
 end component;
 
-
-
 component SPI_Control
-generic(
-	N                     : integer := 8;      -- number of bit to serialize
-	CLK_DIV               : integer := 100 );  -- input clock divider to generate output serial clock; o_sclk frequency = i_clk/(2*CLK_DIV)
-  port ( 
- 
-         start : in std_logic;                              -- clock_divider
+  port ( start : in std_logic;                              -- clock_divider
          reset : in std_logic;                              -- reset
          tx_end : in std_logic;                             -- o_tx_end
          o_data_parallel: in std_logic_vector(7 downto 0); -- o_data_parallel
+         i_clk : in std_logic;  -- temp: input clock
          clk : out std_logic;                               -- i_clk
          rstb : out std_logic;                              -- i_rstb?
          tx_start : out std_logic;                          -- i_tx_start
@@ -67,6 +61,8 @@ generic(
          xaxis_data : out std_logic_vector(15 downto 0);    -- x data out
          yaxis_data : out std_logic_vector(15 downto 0);    -- y data out
          zaxis_data : out std_logic_vector(15 downto 0));   -- z data out
+
+
 end component;
 
 constant N          : integer := 16;   -- number of bits send per SPI transaction
@@ -108,10 +104,6 @@ signal tx_start_s        : std_logic := '0';  -- default idle
 signal tx_end_s          : std_logic;
 signal o_data_parallel_s : STD_LOGIC_VECTOR(15 downto 0);
 signal i_data_parallel_s : STD_LOGIC_VECTOR(15 downto 0);
-signal x_data_out : STD_LOGIC_VECTOR(15 downto 0);
-signal y_data_out : STD_LOGIC_VECTOR(15 downto 0);
-signal z_data_out : STD_LOGIC_VECTOR(15 downto 0);
-
 
 
 signal master_data_received : std_logic_vector(N-1 downto 0);  -- data sent by the master and received by the slave
@@ -142,26 +134,21 @@ DUT : spi_controller
 
 sys_clk_sig <= not sys_clk_sig after 5 ns;
 
-
-
 DUT2 : SPI_Control
-  generic map(
-	N                     => N,
-	CLK_DIV               => CLK_DIV)
   port map(
 	start                       => CLK_DIV,
 	reset                       => cpu_resetn_sig,
 	tx_end                  	=> tx_end_s,
 	o_data_parallel             => o_data_parallel_s,
-	--i_clk                         => clk,
-	rstb						=> i_rstb,
-	tx_start					=> i_tx_start,
+	i_clk                       => clk,
+	i_rstb						=> rstb,
+	i_tx_start					=> tx_start,
 	i_data_parallel				=> i_data_parallel_s,
 	xaxis_data					=> x_data_out,
 	yaxis_data					=> y_data_out,
 	zaxis_data					=> z_data_out);
 	
-
+	
 -- Simulation of an SPI slave replying to the master
 -- slave places proper vector from o_data_values onto miso_sig
 -- on falling edge of sck_sig
