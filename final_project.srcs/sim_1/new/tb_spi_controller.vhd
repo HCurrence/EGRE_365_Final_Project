@@ -48,6 +48,23 @@ generic(
 	i_miso                      : in  std_logic);
 end component;
 
+component SPI_Control
+  port ( start : in std_logic;                              -- clock_divider
+         reset : in std_logic;                              -- reset
+         tx_end : in std_logic;                             -- o_tx_end
+         o_data_parallel: in std_logic_vector(7 downto 0); -- o_data_parallel
+         i_clk : in std_logic;  -- temp: input clock
+         clk : out std_logic;                               -- i_clk
+         rstb : out std_logic;                              -- i_rstb?
+         tx_start : out std_logic;                          -- i_tx_start
+         i_data_parallel : out std_logic_vector(7 downto 0); --i_data_parallel
+         xaxis_data : out std_logic_vector(15 downto 0);    -- x data out
+         yaxis_data : out std_logic_vector(15 downto 0);    -- y data out
+         zaxis_data : out std_logic_vector(15 downto 0));   -- z data out
+
+
+end component;
+
 constant N          : integer := 16;   -- number of bits send per SPI transaction
 constant NO_VECTORS : integer := 8;    -- number of SPI transactions to simulate
 constant CLK_DIV    : integer := 100;  -- input clock divider to generate output serial clock; o_sclk frequency = i_clk/(2*CLK_DIV)
@@ -135,7 +152,7 @@ DUT2 : SPI_Control
 	reset                       => cpu_resetn_sig,
 	tx_end                  	=> tx_end_s,
 	o_data_parallel             => o_data_parallel_s,
-	--i_clk                         => clk,
+	i_clk                         => sys_clk_sig,
 	rstb						=> i_rstb,
 	tx_start					=> tx_start_s,
 	i_data_parallel				=> i_data_parallel_s,
