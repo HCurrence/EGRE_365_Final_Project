@@ -52,12 +52,12 @@ component SPI_Control
   port ( start : in std_logic;                              -- clock_divider
          reset : in std_logic;                              -- reset
          tx_end : in std_logic;                             -- o_tx_end
-         o_data_parallel: in std_logic_vector(7 downto 0); -- o_data_parallel
+         o_data_parallel: in std_logic_vector(15 downto 0); -- o_data_parallel
          i_clk : in std_logic;  -- temp: input clock
          clk : out std_logic;                               -- i_clk
          rstb : out std_logic;                              -- i_rstb?
          tx_start : out std_logic;                          -- i_tx_start
-         i_data_parallel : out std_logic_vector(7 downto 0); --i_data_parallel
+         i_data_parallel : out std_logic_vector(15 downto 0); --i_data_parallel
          xaxis_data : out std_logic_vector(15 downto 0);    -- x data out
          yaxis_data : out std_logic_vector(15 downto 0);    -- y data out
          zaxis_data : out std_logic_vector(15 downto 0));   -- z data out
