@@ -191,6 +191,7 @@ selectCodeEditor("spi_controller.vhd", 396, 448); // bP
 // HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 99 MB. Current time: 11/12/21, 3:44:33 PM EST
 // TclEventType: DG_GRAPH_STALE
 // TclEventType: FILE_SET_CHANGE
+<<<<<<< HEAD
 // TclEventType: DG_GRAPH_STALE
 // TclEventType: FILE_SET_CHANGE
 // TclEventType: DG_GRAPH_STALE
@@ -220,3 +221,5 @@ closeView(PAResourceOtoP.PAViews_CODE, "Code"); // F
 // WARNING: HEventQueue.dispatchEvent() is taking  256533460 ms.
 // WARNING: HEventQueue.dispatchEvent() is taking  6019 ms.
 // HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 89 MB. Current time: 11/15/21, 8:14:41 PM EST
+=======
+>>>>>>> parent of acec0a1 (unfinished  tb)
