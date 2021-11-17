@@ -112,7 +112,8 @@ signal x_data_out : STD_LOGIC_VECTOR(15 downto 0);
 signal y_data_out : STD_LOGIC_VECTOR(15 downto 0);
 signal z_data_out : STD_LOGIC_VECTOR(15 downto 0);
 
-
+signal slow_clk : std_logic;
+signal i_rstb : std_logic;
 
 signal master_data_received : std_logic_vector(N-1 downto 0);  -- data sent by the master and received by the slave
 signal slave_data_sent      : std_logic_vector(N-1 downto 0);  -- data sent by the slave and received by the master
@@ -127,7 +128,7 @@ DUT : spi_controller
 	CLK_DIV               => CLK_DIV)
   port map(
 	i_clk                       => sys_clk_sig,
-	i_rstb                      => cpu_resetn_sig,
+	i_rstb                      => i_rstb,
 	i_tx_start                  => tx_start_s,
 	o_tx_end                    => tx_end_s,
 	i_data_parallel             => i_data_parallel_s,
@@ -142,6 +143,10 @@ DUT : spi_controller
 
 sys_clk_sig <= not sys_clk_sig after 5 ns;
 
+clk_divider : entity work.clock_divider(behavior)
+  generic map(CLK_FREQ => 100) -- input clock frequency in Hz
+  port map(mclk => sys_clk_sig,
+           sclk => slow_clk);
 
 
 DUT2 : SPI_Control
@@ -149,13 +154,13 @@ DUT2 : SPI_Control
 	N                     => N,
 	CLK_DIV               => CLK_DIV)
   port map(
-	start                       => CLK_DIV,
+	start                       => slow_clk,
 	reset                       => cpu_resetn_sig,
 	tx_end                  	=> tx_end_s,
 	o_data_parallel             => o_data_parallel_s,
 	--i_clk                         => clk,
 	rstb						=> i_rstb,
-	tx_start					=> i_tx_start,
+	tx_start					=> tx_start_s,
 	i_data_parallel				=> i_data_parallel_s,
 	xaxis_data					=> x_data_out,
 	yaxis_data					=> y_data_out,
