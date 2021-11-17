@@ -160,11 +160,10 @@ DUT2 : SPI_Control
 	
 reset_process : process
 begin
-        i_rstb  <= '0';
-        wait for 10 ns;
-        i_rstb  <= '1';
-        wait;
-    --end if;
+    i_rstb  <= '0';
+    wait for 10 ns;
+    i_rstb  <= '1';
+    wait;
 end process reset_process;
 	
 	
