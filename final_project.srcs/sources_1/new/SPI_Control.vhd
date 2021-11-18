@@ -311,7 +311,7 @@ begin
 
     master_stimulus : process
     begin
-
+        wait;
         if (reset = '0') then
              tx_start <= '0';
              i_data_parallel <= (others => '0');
