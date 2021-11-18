@@ -48,6 +48,9 @@ signal lock : std_logic;
 
 TYPE state_type IS (READ_WRITE, IDLE, WAIT_STATE, RESET_STATE );
 SIGNAL present_state, next_state : state_type;
+signal count_reset : std_logic;
+signal counter : integer range 1 to 9;
+signal read_write_state : std_logic := '0';
 
 begin
 
@@ -59,134 +62,74 @@ begin
           present_state <= next_state;
         END IF;  
      END PROCESS clocked;
+     
+     count : process(i_clk, count_reset, present_state)
+     begin
+        if(count_reset = '1') then
+            counter <= 1;
+        elsif(rising_edge(i_clk)) then
+            counter <= counter + 1;
+            if(present_state = READ_WRITE) then
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                if(send_data_index >= 8) then
+                    send_data_index <= 8;
+                end if;            
+            elsif (present_state = WAIT_STATE or present_state = IDLE) then
+                send_data_index <= 1;		    						-- rei_clk at the beginning
+            end if;
+        end if;
+     end process count;
  
      nextstate : PROCESS(present_state, start, reset, tx_end)
-     
         BEGIN
             CASE present_state is
                 WHEN IDLE =>
-                    if (reset = '1') then
+                    if (reset = '0') then
                         next_state <= RESET_STATE;
+                        count_reset <= '1';
                     else
                         if (start = '1') then
-                            next_state <= write_1;
+                            next_state <= READ_WRITE;
+                            count_reset <= '0';
                         else 
                             next_state <= present_state;
                         end if;
                     end if;
-       --write 1       
-                WHEN write_1 =>
-                    if (reset = '1') then
+       --for reading and writing data       
+                WHEN READ_WRITE =>
+                    if (reset = '0') then
                         next_state <= RESET_STATE;
+                        count_reset <= '1';
                     else
-                        if (tx_end = '1') then
-                            next_state <= write_2;
+                        if (counter = 9) then
+                            next_state <= WAIT_STATE;
+                            count_reset <= '0';
                         else
                             next_state <= present_state;
                         end if;
                      end if;
-       --write 2             
-                WHEN write_2 =>
-                    if (reset = '1') then
+       --waiting            
+                WHEN WAIT_STATE =>
+                    if (reset = '0') then
                         next_state <= RESET_STATE;
-                    else
-                        if (tx_end = '1') then
-                            next_state <= wait_state;
-                        else
-                            next_state <= present_state;
-                        end if;
-                     end if;
-                        
-                    
-      --Wait statement   
-      
-                  WHEN wait_state =>
-                    if (reset = '1') then
-                        next_state <= RESET_STATE;
+                        count_reset <= '1';
                     else
                         if (start = '1') then
-                            next_state <= read_X1;
+                            next_state <= READ_WRITE;
+                            count_reset <= '1';
+                            read_write_state <= '1';
                         else
                             next_state <= present_state;
                         end if;
-                     end if;            
-    -- wait until NET_DATA_VALID = '1';             
-       
-         --read_X0         
-                WHEN read_X1 =>
-                    if (reset = '1') then
-                        next_state <= RESET_STATE;
-                    else
-                        if (tx_end = '1') then
-                            next_state <= read_X2;
-                        else
-                            next_state <= present_state;
-                        end if;
-                     end if;   
-         --read_X1           
-                WHEN read_X2 =>
-                    if (reset = '1') then
-                        next_state <= RESET_STATE;
-                    else
-                        if (tx_end = '1') then
-                            next_state <= read_Y1;
-                        else
-                            next_state <= present_state;
-                        end if;
-                     end if;  
-         --read_Y0         
-                WHEN read_Y1 =>
-                    if (reset = '1') then
-                        next_state <= RESET_STATE;
-                    else
-                        if (tx_end = '1') then
-                            next_state <= read_Y2;
-                        else
-                            next_state <= present_state;
-                        end if;
-                     end if;  
-    
-         --read_Y1          
-                WHEN read_Y2 =>
-                    if (reset = '1') then
-                        next_state <= RESET_STATE;
-                    else
-                        if (tx_end = '1') then
-                            next_state <= read_Z1;
-                        else
-                            next_state <= present_state;
-                        end if;
-                     end if;      
-          --read_Z0         
-                WHEN read_Z1 =>
-                    if (reset = '1') then
-                        next_state <= RESET_STATE;
-                    else
-                        if (tx_end = '1') then
-                            next_state <= read_Z2;
-                        else
-                            next_state <= present_state;
-                        end if;
-                     end if;  
-         --read_Z1           
-                WHEN read_Z2 =>
-                    if (reset = '1') then
-                        next_state <= RESET_STATE;
-                    else
-                        if (tx_end = '1') then
-                            next_state <= IDLE;
-                        else
-                            next_state <= present_state;
-                        end if;
-                     end if;           
-     
+                     end if;
          --RESET           
                 WHEN RESET_STATE =>
                     if (reset = '0') then
-                        --next_state <= present_state;
-                        next_state<= IDLE;                                                                      
+                        next_state <= RESET_STATE;
+                        count_reset <= '0'; 
+                        read_write_state <= '0';                                                                     
                     else
-                        next_state <= present_state;
+                        next_state <= IDLE;
                     end if;
                 WHEN OTHERS =>
         END CASE;
@@ -196,110 +139,38 @@ begin
     begin
         -- write_1, write_2, read_X1, read_X2, read_Y1, read_Y2, read_Z1, read_Z2, IDLE, WAIT_STATE, RESET_STATE 
         case(present_state) is
-            when IDLE => 
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
+            when IDLE =>
+                 i_data_parallel <= i_data_values(send_data_index);
+                 tx_start <= '0';
+                 
+            when READ_WRITE => 
                 tx_start <= '0';
-            
-            when write_1 =>
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-                waitclocks(i_clk, 4);
                 
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';
-            
-            when write_2 =>
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-                waitclocks(i_clk, 4);
+                if(read_write_state = '1') then
+                    if(counter = 3) then
+                        xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                    elsif(counter = 4) then
+                        xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                    elsif(counter = 5) then
+                        yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                    elsif(counter = 6) then
+                        yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                    elsif(counter = 7) then
+                        zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                    elsif(counter = 8) then
+                        zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                    end if;
                 
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';
+                end if;
             
+                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+
+                tx_start <= '1';										-- i_clk transaction
+                
             when WAIT_STATE =>
-                waitclocks(i_clk, 20000);							-- wait a "long time" to i_clk a 2nd set of transactions - see point (21) on slides
-                send_data_index <= 1;		    						-- rei_clk at the beginning
-                waitclocks(i_clk, 1);
+                tx_start <= '0';
                 i_data_parallel <= i_data_values(send_data_index);
-                waitclocks(i_clk, 4);
-            
-            when read_X1 =>
-                xaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
-            
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-                waitclocks(i_clk, 4);
                 
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';
-            
-            when read_X2 =>
-                xaxis_data(15 downto 8) <= o_data_parallel(15 downto 8);
-            
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-                waitclocks(i_clk, 4);
-                
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';
-            
-            when read_Y1 => 
-                yaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
-            
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-                waitclocks(i_clk, 4);
-                
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';
-            
-            when read_Y2 =>
-                yaxis_data(15 downto 8) <= o_data_parallel(15 downto 8);
-            
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-                waitclocks(i_clk, 4);
-                
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';
-            
-            when read_Z1 =>
-                zaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
-                
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-                waitclocks(i_clk, 4);
-                
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';
-            
-            when read_Z2 =>
-                zaxis_data(15 downto 8) <= o_data_parallel(15 downto 8);
-                
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-                waitclocks(i_clk, 4);
-                
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';
-            
             when others =>
                  tx_start <= '0';
                  i_data_parallel <= (others => '0');
@@ -308,72 +179,6 @@ begin
                  zaxis_data <= (others => '0');
         end case;        
     end process output;
-
-    master_stimulus : process
-    begin
-        wait;
-        if (reset = '0') then
-             tx_start <= '0';
-             i_data_parallel <= (others => '0');
-             xaxis_data <= (others => '0');
-             yaxis_data <= (others => '0');
-             zaxis_data <= (others => '0');
-        else 
-            i_data_parallel <= i_data_values(send_data_index);    -- set 1st data on i_data_parallel - see point (1) on slides
-            
-            wait until start'event and start='1';
-            
-            for i in 0 to 6 loop
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';	            
-            
-                wait until tx_end'event and tx_end='1';				    -- wait until SPI controller signals done with transaction
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-                waitclocks(i_clk, 4);
-            end loop;
-        
-            tx_start <= '1';										-- i_clk 8th transaction
-            waitclocks(i_clk, 2);
-            tx_start <= '0';										-- 8th transaction i_clked
-        
-            wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 8th transaction
-            
-                                                                    ------------------------------------------------------------------
-        
-            waitclocks(i_clk, 20000);							-- wait a "long time" to i_clk a 2nd set of transactions - see point (21) on slides
-            send_data_index <= 1;		    						-- rei_clk at the beginning
-            waitclocks(i_clk, 1);
-            i_data_parallel <= i_data_values(send_data_index);
-            waitclocks(i_clk, 4);
-            
-            
-            for i in 0 to 6 loop
-                tx_start <= '1';										-- i_clk transaction
-                waitclocks(i_clk, 2);
-                tx_start <= '0';										-- transaction i_clked
-            
-            
-                wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with transaction
-                send_data_index <= send_data_index + 1;					-- increment to next value
-                waitclocks(i_clk, 1);
-                i_data_parallel <= i_data_values(send_data_index);
-                waitclocks(i_clk, 4);
-            end loop;
-        
-            tx_start <= '1';										-- i_clk 8th transaction
-            waitclocks(i_clk, 2);
-            tx_start <= '0';										-- 8th transaction i_clked
-        
-            wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 8th transaction
-        
-            wait until start'event and start='1';
-        
-            wait; 													-- stop the process to avoid an infinite loop
-       end if;
-    end process master_stimulus;
 
 
 end Behavioral;

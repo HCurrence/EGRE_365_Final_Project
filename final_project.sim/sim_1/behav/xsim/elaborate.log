@@ -6,4 +6,13 @@ Starting static elaboration
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
-ERROR: [XSIM 43-3249] File C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd, line 46. Unresolved signal "send_data_index" is multiply driven.
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling architecture rtl of entity xil_defaultlib.spi_controller [\spi_controller(n=16)\]
+Compiling architecture behavior of entity xil_defaultlib.clock_divider [\clock_divider(clk_freq=100)\]
+Compiling architecture behavioral of entity xil_defaultlib.SPI_Control [spi_control_default]
+Compiling architecture rtl of entity xil_defaultlib.tb_spi_controller
+Built simulation snapshot tb_spi_controller_behav

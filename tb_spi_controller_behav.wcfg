@@ -10,12 +10,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="4224000fs"></ZoomStartTime>
-      <ZoomEndTime time="34224001fs"></ZoomEndTime>
-      <Cursor1Time time="9224000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1000000fs"></ZoomEndTime>
+      <Cursor1Time time="251538fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="156"></NameColumnWidth>
+      <NameColumnWidth column_width="141"></NameColumnWidth>
       <ValueColumnWidth column_width="72"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="21" />
@@ -38,10 +38,6 @@
    <wvobject fp_name="/tb_spi_controller/i_data_index" type="other">
       <obj_property name="ElementShortName">i_data_index</obj_property>
       <obj_property name="ObjectShortName">i_data_index</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_spi_controller/send_data_index" type="other">
-      <obj_property name="ElementShortName">send_data_index</obj_property>
-      <obj_property name="ObjectShortName">send_data_index</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_spi_controller/count_fall" type="other">
       <obj_property name="ElementShortName">count_fall</obj_property>
@@ -121,6 +117,23 @@
       <wvobject fp_name="/tb_spi_controller/DUT/w_st_next" type="other">
          <obj_property name="ElementShortName">w_st_next</obj_property>
          <obj_property name="ObjectShortName">w_st_next</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group590" type="group">
+      <obj_property name="label">SPI State Machine</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_spi_controller/DUT2/send_data_index" type="other">
+         <obj_property name="ElementShortName">send_data_index</obj_property>
+         <obj_property name="ObjectShortName">send_data_index</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_spi_controller/DUT2/present_state" type="other">
+         <obj_property name="ElementShortName">present_state</obj_property>
+         <obj_property name="ObjectShortName">present_state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_spi_controller/DUT2/next_state" type="other">
+         <obj_property name="ElementShortName">next_state</obj_property>
+         <obj_property name="ObjectShortName">next_state</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>
