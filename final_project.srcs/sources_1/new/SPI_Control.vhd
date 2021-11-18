@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity SPI_Control is
   port ( -- Inputs --
-         start : in std_logic;                              -- clock_divider
+         start : in std_logic;                              -- from clock_divider
          reset : in std_logic;                              -- i_rstb
          tx_end : in std_logic;                             -- o_tx_end
          o_data_parallel: in std_logic_vector(15 downto 0); -- o_data_parallel

@@ -92,7 +92,7 @@ signal i_data_index    : integer := 1;
 signal send_data_index : integer := 1;
 signal count_fall      : integer := 0;
 signal count_rise      : integer := 0;
-signal sys_clk_sig     : STD_LOGIC:= '0';		-- start system clock at '0'
+signal sys_clk_sig     : STD_LOGIC := '0';		-- start system clock at '0'
 signal cpu_resetn_sig  : STD_LOGIC := '1';		-- default for reset signal is '1'
 signal sck_sig         : STD_LOGIC;
 signal cs_sig          : STD_LOGIC;
@@ -135,8 +135,19 @@ DUT : spi_controller
 			  
 
 -- master clock and reset signals
-
 sys_clk_sig <= not sys_clk_sig after 5 ns;
+
+reset_process : process
+begin
+    wait for 10 ns;
+    cpu_resetn_sig <= '0';
+    i_rstb  <= '0';
+    wait for 10 ns;
+    cpu_resetn_sig <= '1';
+    i_rstb  <= '1';
+    wait;
+end process reset_process;
+
 
 clk_divider : entity work.clock_divider(behavior)
   generic map(CLK_FREQ => 100) -- input clock frequency in Hz
@@ -156,16 +167,6 @@ DUT2 : SPI_Control
 	xaxis_data					=> x_data_out,
 	yaxis_data					=> y_data_out,
 	zaxis_data					=> z_data_out);
-	
-	
-reset_process : process
-begin
-    i_rstb  <= '0';
-    wait for 10 ns;
-    i_rstb  <= '1';
-    wait;
-end process reset_process;
-	
 	
 -- Simulation of an SPI slave replying to the master
 -- slave places proper vector from o_data_values onto miso_sig
