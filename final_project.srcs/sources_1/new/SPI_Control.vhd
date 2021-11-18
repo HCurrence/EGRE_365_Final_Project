@@ -44,8 +44,161 @@ constant i_data_values : output_value_array := (std_logic_vector(to_unsigned(16#
 
 --Signals
 signal send_data_index : integer := 1;
+signal lock : std_logic;
+
+TYPE state_type IS (write_1, write_2, read_X1, read_X2, read_Y1, read_Y2, read_Z1, read_Z2, IDLE, WAIT_STATE, RESET_STATE );
+SIGNAL present_state, next_state : state_type;
 
 begin
+
+    clocked : PROCESS(i_clk,reset)
+       BEGIN
+         IF(reset='0') THEN 
+           present_state <= IDLE;
+        ELSIF(rising_edge(i_clk)) THEN
+          present_state <= next_state;
+        END IF;  
+     END PROCESS clocked;
+ 
+     nextstate : PROCESS(present_state, start, reset, tx_end)
+     
+        BEGIN
+            CASE present_state is
+                WHEN IDLE =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (start = '1') then
+                            next_state <= write_1;
+                        else 
+                            next_state <= present_state;
+                        end if;
+                    end if;
+       --write 1       
+                WHEN write_1 =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (tx_end = '1') then
+                            next_state <= write_2;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;
+       --write 2             
+                WHEN write_2 =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (tx_end = '1') then
+                            next_state <= wait_state;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;
+                        
+                    
+      --Wait statement   
+      
+                  WHEN wait_state =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (start = '1') then
+                            next_state <= read_X1;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;            
+    -- wait until NET_DATA_VALID = '1';             
+       
+         --read_X0         
+                WHEN read_X1 =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (tx_end = '1') then
+                            next_state <= read_X2;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;   
+         --read_X1           
+                WHEN read_X2 =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (tx_end = '1') then
+                            next_state <= read_Y1;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;  
+         --read_Y0         
+                WHEN read_Y1 =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (tx_end = '1') then
+                            next_state <= read_Y2;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;  
+    
+         --read_Y1          
+                WHEN read_Y2 =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (tx_end = '1') then
+                            next_state <= read_Z1;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;      
+          --read_Z0         
+                WHEN read_Z1 =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (tx_end = '1') then
+                            next_state <= read_Z2;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;  
+         --read_Z1           
+                WHEN read_Z2 =>
+                    if (reset = '1') then
+                        next_state <= RESET_STATE;
+                    else
+                        if (tx_end = '1') then
+                            next_state <= IDLE;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;           
+     
+         --RESET           
+                WHEN RESET_STATE =>
+                    if (reset = '0') then
+                        --next_state <= present_state;
+                        next_state<= IDLE;                                                                      
+                    else
+                        next_state <= present_state;
+                    end if;
+                WHEN OTHERS =>
+        END CASE;
+      END PROCESS nextstate;
+                 
+    output : process(present_state)
+    begin
+        case(present_state) is
+            when others =>
+            
+        end case;        
+    end process output;
 
     master_stimulus : process
     begin
