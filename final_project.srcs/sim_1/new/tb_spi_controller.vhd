@@ -139,13 +139,15 @@ sys_clk_sig <= not sys_clk_sig after 5 ns;
 
 reset_process : process
 begin
-    wait for 10 ns;
-    cpu_resetn_sig <= '0';
-    i_rstb  <= '0';
-    wait for 10 ns;
-    cpu_resetn_sig <= '1';
-    i_rstb  <= '1';
-    wait;
+    --if (cpu_resetn_sig = '1') then
+        wait for 10 ns;
+        cpu_resetn_sig <= '0';
+        i_rstb  <= '0';
+        wait for 10 ns;
+        cpu_resetn_sig <= '1';
+        i_rstb  <= '1';
+        wait;
+    --end if;
 end process reset_process;
 
 
