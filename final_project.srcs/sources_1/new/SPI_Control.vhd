@@ -192,11 +192,108 @@ begin
         END CASE;
       END PROCESS nextstate;
                  
-    output : process(present_state)
+    output : process
     begin
+        -- write_1, write_2, read_X1, read_X2, read_Y1, read_Y2, read_Z1, read_Z2, IDLE, WAIT_STATE, RESET_STATE 
         case(present_state) is
-            when others =>
+            when IDLE => 
+                tx_start <= '1';										-- i_clk transaction
+                waitclocks(i_clk, 2);
+                tx_start <= '0';
             
+            when write_1 =>
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                waitclocks(i_clk, 1);
+                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+                waitclocks(i_clk, 4);
+                
+                tx_start <= '1';										-- i_clk transaction
+                waitclocks(i_clk, 2);
+                tx_start <= '0';
+            
+            when write_2 =>
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                waitclocks(i_clk, 1);
+                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+                waitclocks(i_clk, 4);
+                
+                tx_start <= '1';										-- i_clk transaction
+                waitclocks(i_clk, 2);
+                tx_start <= '0';
+            
+            when WAIT_STATE =>
+                waitclocks(i_clk, 20000);							-- wait a "long time" to i_clk a 2nd set of transactions - see point (21) on slides
+                send_data_index <= 1;		    						-- rei_clk at the beginning
+                waitclocks(i_clk, 1);
+                i_data_parallel <= i_data_values(send_data_index);
+                waitclocks(i_clk, 4);
+            
+            when read_X1 =>
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                waitclocks(i_clk, 1);
+                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+                waitclocks(i_clk, 4);
+                
+                tx_start <= '1';										-- i_clk transaction
+                waitclocks(i_clk, 2);
+                tx_start <= '0';
+            
+            when read_X2 =>
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                waitclocks(i_clk, 1);
+                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+                waitclocks(i_clk, 4);
+                
+                tx_start <= '1';										-- i_clk transaction
+                waitclocks(i_clk, 2);
+                tx_start <= '0';
+            
+            when read_Y1 => 
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                waitclocks(i_clk, 1);
+                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+                waitclocks(i_clk, 4);
+                
+                tx_start <= '1';										-- i_clk transaction
+                waitclocks(i_clk, 2);
+                tx_start <= '0';
+            
+            when read_Y2 =>
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                waitclocks(i_clk, 1);
+                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+                waitclocks(i_clk, 4);
+                
+                tx_start <= '1';										-- i_clk transaction
+                waitclocks(i_clk, 2);
+                tx_start <= '0';
+            
+            when read_Z1 =>
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                waitclocks(i_clk, 1);
+                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+                waitclocks(i_clk, 4);
+                
+                tx_start <= '1';										-- i_clk transaction
+                waitclocks(i_clk, 2);
+                tx_start <= '0';
+            
+            when read_Z2 =>
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                waitclocks(i_clk, 1);
+                i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
+                waitclocks(i_clk, 4);
+                
+                tx_start <= '1';										-- i_clk transaction
+                waitclocks(i_clk, 2);
+                tx_start <= '0';
+            
+            when others =>
+                 tx_start <= '0';
+                 i_data_parallel <= (others => '0');
+                 xaxis_data <= (others => '0');
+                 yaxis_data <= (others => '0');
+                 zaxis_data <= (others => '0');
         end case;        
     end process output;
 
