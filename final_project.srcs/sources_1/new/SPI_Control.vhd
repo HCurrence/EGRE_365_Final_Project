@@ -229,6 +229,8 @@ begin
                 waitclocks(i_clk, 4);
             
             when read_X1 =>
+                xaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
+            
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 waitclocks(i_clk, 1);
                 i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
@@ -239,6 +241,8 @@ begin
                 tx_start <= '0';
             
             when read_X2 =>
+                xaxis_data(15 downto 8) <= o_data_parallel(15 downto 8);
+            
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 waitclocks(i_clk, 1);
                 i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
@@ -249,6 +253,8 @@ begin
                 tx_start <= '0';
             
             when read_Y1 => 
+                yaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
+            
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 waitclocks(i_clk, 1);
                 i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
@@ -259,6 +265,8 @@ begin
                 tx_start <= '0';
             
             when read_Y2 =>
+                yaxis_data(15 downto 8) <= o_data_parallel(15 downto 8);
+            
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 waitclocks(i_clk, 1);
                 i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
@@ -269,6 +277,8 @@ begin
                 tx_start <= '0';
             
             when read_Z1 =>
+                zaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
+                
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 waitclocks(i_clk, 1);
                 i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
@@ -279,6 +289,8 @@ begin
                 tx_start <= '0';
             
             when read_Z2 =>
+                zaxis_data(15 downto 8) <= o_data_parallel(15 downto 8);
+                
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 waitclocks(i_clk, 1);
                 i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
