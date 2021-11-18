@@ -46,7 +46,7 @@ constant i_data_values : output_value_array := (std_logic_vector(to_unsigned(16#
 signal send_data_index : integer := 1;
 signal lock : std_logic;
 
-TYPE state_type IS (write_1, write_2, read_X1, read_X2, read_Y1, read_Y2, read_Z1, read_Z2, IDLE, WAIT_STATE, RESET_STATE );
+TYPE state_type IS (READ_WRITE, IDLE, WAIT_STATE, RESET_STATE );
 SIGNAL present_state, next_state : state_type;
 
 begin
@@ -192,7 +192,7 @@ begin
         END CASE;
       END PROCESS nextstate;
                  
-    output : process
+    output : process(present_state, i_clk, send_data_index)
     begin
         -- write_1, write_2, read_X1, read_X2, read_Y1, read_Y2, read_Z1, read_Z2, IDLE, WAIT_STATE, RESET_STATE 
         case(present_state) is
