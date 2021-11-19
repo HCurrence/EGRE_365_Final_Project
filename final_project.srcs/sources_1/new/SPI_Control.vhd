@@ -101,9 +101,13 @@ begin
                         next_state <= RESET_STATE;
                         count_reset <= '1';
                     else
+                        count_reset <= '0';
                         if (counter >= 8) then
-                            next_state <= WAIT_STATE;
-                            count_reset <= '0';
+                            if(read_write_state = '0') then
+                                next_state <= WAIT_STATE;
+                            else
+                                next_state <= IDLE;
+                            end if;
                         else
                             next_state <= present_state;
                         end if;
