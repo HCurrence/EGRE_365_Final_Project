@@ -19,15 +19,6 @@ end SPI_Control;
 
 architecture Behavioral of SPI_Control is
 
---procedures
-procedure waitclocks(signal clock : std_logic;
-                       N : INTEGER) is
-	begin
-		for i in 1 to N loop
-			wait until clock'event and clock='0';	-- wait on falling edge
-		end loop;
-end waitclocks;
-
 -- Constants
 constant N          : integer := 16;   -- number of bits send per SPI transaction
 constant NO_VECTORS : integer := 8;    -- number of SPI transactions to simulate
@@ -44,12 +35,11 @@ constant i_data_values : output_value_array := (std_logic_vector(to_unsigned(16#
 
 --Signals
 signal send_data_index : integer := 1;
-signal lock : std_logic;
 
 TYPE state_type IS (READ_WRITE, IDLE, WAIT_STATE, RESET_STATE );
 SIGNAL present_state, next_state : state_type;
 signal count_reset : std_logic;
-signal counter : integer range 1 to 9;
+signal counter : integer;
 signal read_write_state : std_logic := '0';
 
 begin
@@ -57,13 +47,14 @@ begin
     clocked : PROCESS(i_clk,reset)
        BEGIN
          IF(reset='0') THEN 
-           present_state <= IDLE;
+           present_state <= RESET_STATE;
         ELSIF(rising_edge(i_clk)) THEN
           present_state <= next_state;
         END IF;  
      END PROCESS clocked;
      
      count : process(tx_end, count_reset)
+     variable zero : std_logic_vector(15 downto 0) := (others => '0');
      begin
         if(count_reset = '1') then
             counter <= 1;
@@ -73,6 +64,7 @@ begin
      end process count;
      
      send_index : process(i_clk, tx_end, count_reset, present_state)
+     variable zero : std_logic_vector(15 downto 0) := (others => '0');
      begin
         if(count_reset = '1') then
             send_data_index <= 1;
@@ -81,7 +73,7 @@ begin
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 if(send_data_index >= 8) then
                     send_data_index <= 8;
-                end if;            
+                end if;  
             elsif (present_state = WAIT_STATE or present_state = IDLE) then
                 send_data_index <= 1;		    						-- rei_clk at the beginning
             end if;
@@ -98,7 +90,6 @@ begin
                         count_reset <= '1';
                     else
                         if (start = '1') then
-                            
                             next_state <= READ_WRITE;
                             count_reset <= '1';
                         else 
@@ -112,7 +103,7 @@ begin
                         count_reset <= '1';
                     else
                         count_reset <= '0';
-                        if (counter >= 8) then
+                        if (counter >= 9) then
                             if(read_write_state = '0') then
                                 next_state <= WAIT_STATE;
                             else
@@ -151,7 +142,6 @@ begin
                  
     output : process(present_state, i_clk, send_data_index)
     begin
-        -- write_1, write_2, read_X1, read_X2, read_Y1, read_Y2, read_Z1, read_Z2, IDLE, WAIT_STATE, RESET_STATE 
         case(present_state) is
             when IDLE =>
                  i_data_parallel <= i_data_values(send_data_index);
