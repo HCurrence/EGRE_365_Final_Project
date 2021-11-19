@@ -63,12 +63,20 @@ begin
         END IF;  
      END PROCESS clocked;
      
-     count : process(i_clk, count_reset, present_state)
+     count : process(tx_end, count_reset)
      begin
         if(count_reset = '1') then
             counter <= 1;
-        elsif(rising_edge(i_clk)) then
+        elsif(tx_end = '1') then
             counter <= counter + 1;
+        end if;
+     end process count;
+     
+     send_index : process(i_clk, count_reset, present_state)
+     begin
+        if(count_reset = '1') then
+            send_data_index <= 1;
+        elsif(rising_edge(i_clk)) then
             if(present_state = READ_WRITE) then
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 if(send_data_index >= 8) then
@@ -78,7 +86,7 @@ begin
                 send_data_index <= 1;		    						-- rei_clk at the beginning
             end if;
         end if;
-     end process count;
+     end process send_index;
  
      nextstate : PROCESS(present_state, start, reset, tx_end)
         BEGIN
