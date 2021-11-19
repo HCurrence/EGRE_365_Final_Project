@@ -101,7 +101,7 @@ begin
                         next_state <= RESET_STATE;
                         count_reset <= '1';
                     else
-                        if (counter = 9) then
+                        if (counter >= 8) then
                             next_state <= WAIT_STATE;
                             count_reset <= '0';
                         else
