@@ -1,3 +1,1 @@
 Breakpoint File Version 1.0
-106,true,"C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd"
-104,true,"C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd"
