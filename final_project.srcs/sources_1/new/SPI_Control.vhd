@@ -72,12 +72,12 @@ begin
         end if;
      end process count;
      
-     send_index : process(i_clk, count_reset, present_state)
+     send_index : process(i_clk, tx_end, count_reset, present_state)
      begin
         if(count_reset = '1') then
             send_data_index <= 1;
         elsif(rising_edge(i_clk)) then
-            if(present_state = READ_WRITE) then
+            if(present_state = READ_WRITE and tx_end = '1') then
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 if(send_data_index >= 8) then
                     send_data_index <= 8;
