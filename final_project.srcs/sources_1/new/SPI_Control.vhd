@@ -84,13 +84,15 @@ begin
         BEGIN
             CASE present_state is
                 WHEN IDLE =>
+                    read_write_state <= '0';
                     if (reset = '0') then
                         next_state <= RESET_STATE;
                         count_reset <= '1';
                     else
                         if (start = '1') then
+                            
                             next_state <= READ_WRITE;
-                            count_reset <= '0';
+                            count_reset <= '1';
                         else 
                             next_state <= present_state;
                         end if;
@@ -164,7 +166,6 @@ begin
                     elsif(counter = 8) then
                         zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
                     end if;
-                
                 end if;
             
                 i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel

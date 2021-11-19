@@ -1,0 +1,42 @@
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+Error: ERROR - incorrect value on master_data_received
+Time: 35325 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 68355 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 101385 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 134415 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 167445 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 200475 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 233505 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 299795 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 365855 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 398885 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 431915 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 464945 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 497975 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 564035 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 597295 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 630325 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 663355 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 696385 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 729415 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 762445 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd

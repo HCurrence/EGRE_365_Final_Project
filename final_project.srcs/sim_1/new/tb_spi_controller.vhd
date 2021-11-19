@@ -163,7 +163,7 @@ DUT2 : SPI_Control
 	reset                       => i_rstb,
 	tx_end                  	=> tx_end_s,
 	o_data_parallel             => o_data_parallel_s,
-	i_clk                         => sys_clk_sig,
+	i_clk                       => sys_clk_sig,
 	tx_start					=> tx_start_s,
 	i_data_parallel				=> i_data_parallel_s,
 	xaxis_data					=> x_data_out,
