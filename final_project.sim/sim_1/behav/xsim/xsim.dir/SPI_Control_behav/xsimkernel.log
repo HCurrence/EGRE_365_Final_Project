@@ -1,0 +1,4 @@
+Running: xsim.dir/SPI_Control_behav/xsimk.exe -simmode gui -wdb SPI_Control_behav.wdb -simrunnum 0 -socket 1040
+Design successfully loaded
+Design Loading Memory Usage: 5820 KB (Peak: 5820 KB)
+Design Loading CPU Usage: 0 ms

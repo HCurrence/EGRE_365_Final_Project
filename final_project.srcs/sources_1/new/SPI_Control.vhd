@@ -4,31 +4,20 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity SPI_Control is
   port ( -- Inputs --
-         start : in std_logic;                              -- clock_divider
-         reset : in std_logic;                              -- reset
+         start : in std_logic;                              -- from clock_divider
+         reset : in std_logic;                              -- i_rstb
          tx_end : in std_logic;                             -- o_tx_end
-         o_data_parallel: in std_logic_vector(7 downto 0); -- o_data_parallel
-         i_clk : in std_logic;  -- temp: input clock
+         o_data_parallel: in std_logic_vector(15 downto 0); -- o_data_parallel
+         i_clk : in std_logic;                              -- input clock
          -- Outputs --
-         clk : out std_logic;                               -- i_clk
-         rstb : out std_logic;                              -- i_rstb?
          tx_start : out std_logic;                          -- i_tx_start
-         i_data_parallel : out std_logic_vector(7 downto 0); --i_data_parallel
+         i_data_parallel : out std_logic_vector(15 downto 0); --i_data_parallel
          xaxis_data : out std_logic_vector(15 downto 0);    -- x data out
          yaxis_data : out std_logic_vector(15 downto 0);    -- y data out
          zaxis_data : out std_logic_vector(15 downto 0));   -- z data out
 end SPI_Control;
 
 architecture Behavioral of SPI_Control is
-
---procedures
-procedure waitclocks(signal clock : std_logic;
-                       N : INTEGER) is
-	begin
-		for i in 1 to N loop
-			wait until clock'event and clock='0';	-- wait on falling edge
-		end loop;
-end waitclocks;
 
 -- Constants
 constant N          : integer := 16;   -- number of bits send per SPI transaction
@@ -47,74 +36,152 @@ constant i_data_values : output_value_array := (std_logic_vector(to_unsigned(16#
 --Signals
 signal send_data_index : integer := 1;
 
+TYPE state_type IS (READ_WRITE, IDLE, WAIT_STATE, RESET_STATE );
+SIGNAL present_state, next_state : state_type;
+signal count_reset : std_logic;
+signal counter : integer;
+signal read_write_state : std_logic := '0';
+
 begin
 
-    reset_process : process
+    clocked : PROCESS(i_clk,reset)
+       BEGIN
+         IF(reset='0') THEN 
+           present_state <= RESET_STATE;
+        ELSIF(rising_edge(i_clk)) THEN
+          present_state <= next_state;
+        END IF;  
+     END PROCESS clocked;
+     
+     count : process(tx_end, count_reset, i_clk)
+     variable zero : std_logic_vector(15 downto 0) := (others => '0');
+     begin
+        if(count_reset = '1') then
+            counter <= 1;
+        elsif(tx_end = '1' and rising_edge(i_clk)) then
+            counter <= counter + 1;
+        end if;
+     end process count;
+     
+     send_index : process(i_clk, tx_end, count_reset, present_state)
+     variable zero : std_logic_vector(15 downto 0) := (others => '0');
+     begin
+        if(count_reset = '1') then
+            send_data_index <= 1;
+        elsif(rising_edge(i_clk)) then
+            if(present_state = READ_WRITE and tx_end = '1') then
+                send_data_index <= send_data_index + 1;					-- increment to next value
+                if(send_data_index >= 8) then
+                    send_data_index <= 8;
+                end if;  
+            elsif (present_state = WAIT_STATE or present_state = IDLE) then
+                send_data_index <= 1;		    						-- rei_clk at the beginning
+            end if;
+        end if;
+     end process send_index;
+ 
+     nextstate : PROCESS(present_state, start, reset, tx_end)
+        BEGIN
+            CASE present_state is
+                WHEN IDLE =>
+                    read_write_state <= '0';
+                    if (reset = '0') then
+                        next_state <= RESET_STATE;
+                        count_reset <= '1';
+                    else
+                        if (start = '1') then
+                            next_state <= READ_WRITE;
+                            count_reset <= '1';
+                        else 
+                            next_state <= present_state;
+                        end if;
+                    end if;
+       --for reading and writing data       
+                WHEN READ_WRITE =>
+                    if (reset = '0') then
+                        next_state <= RESET_STATE;
+                        count_reset <= '1';
+                    else
+                        count_reset <= '0';
+                        if (counter >= 9) then
+                            if(read_write_state = '0') then
+                                next_state <= WAIT_STATE;
+                            else
+                                next_state <= IDLE;
+                            end if;
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;
+       --waiting            
+                WHEN WAIT_STATE =>
+                    if (reset = '0') then
+                        next_state <= RESET_STATE;
+                        count_reset <= '1';
+                    else
+                        if (start = '1') then
+                            next_state <= READ_WRITE;
+                            count_reset <= '1';
+                            read_write_state <= '1';
+                        else
+                            next_state <= present_state;
+                        end if;
+                     end if;
+         --RESET           
+                WHEN RESET_STATE =>
+                    if (reset = '0') then
+                        next_state <= RESET_STATE;
+                        count_reset <= '0'; 
+                        read_write_state <= '0';                                                                     
+                    else
+                        next_state <= IDLE;
+                    end if;
+                WHEN OTHERS =>
+        END CASE;
+      END PROCESS nextstate;
+                 
+    output : process(present_state, i_clk, send_data_index)
     begin
-        rstb <= '1';
-        waitclocks(i_clk, 200000);							-- activate rstb - see point (2) on slides
-        rstb  <= '0';
-        waitclocks(i_clk, 200000);
-        rstb  <= '1';
-    end process reset_process;
-
-    master_stimulus : process
-    begin
-
-        i_data_parallel <= i_data_values(send_data_index);    -- set 1st data on i_data_parallel - see point (1) on slides
-        
-        wait until start'event and start='1';
-        
-        for i in 0 to 7 loop
-            tx_start <= '1';										-- i_clk transaction
-            waitclocks(i_clk, 2);
-            tx_start <= '0';	            
-        
-            wait until tx_end'event and tx_end='1';				    -- wait until SPI controller signals done with transaction
-            send_data_index <= send_data_index + 1;					-- increment to next value
-            waitclocks(i_clk, 1);
-            i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
-            waitclocks(i_clk, 4);
-        end loop;
+            case(present_state) is
+                when IDLE =>
+                     i_data_parallel <= i_data_values(send_data_index);
+                     tx_start <= '0';
+                     
+                when READ_WRITE => 
+                    tx_start <= '0';
+                    
+                    if(read_write_state = '1') then
+                        if(counter = 3) then
+                            xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                        elsif(counter = 4) then
+                            xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                        elsif(counter = 5) then
+                            yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                        elsif(counter = 6) then
+                            yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                        elsif(counter = 7) then
+                            zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                        elsif(counter = 8) then
+                            zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                        end if;
+                    end if;
+                
+                    i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
     
-        tx_start <= '1';										-- i_clk 8th transaction
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 8th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 8th transaction
-        
-                                                                ------------------------------------------------------------------
-    
-        waitclocks(i_clk, 20000);							-- wait a "long time" to i_clk a 2nd set of transactions - see point (21) on slides
-        send_data_index <= 1;		    						-- rei_clk at the beginning
-        waitclocks(i_clk, 1);
-        i_data_parallel <= i_data_values(send_data_index);
-        waitclocks(i_clk, 4);
-        
-        for i in 0 to 6 loop
-            tx_start <= '1';										-- i_clk transaction
-            waitclocks(i_clk, 2);
-            tx_start <= '0';										-- transaction i_clked
-        
-        
-            wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with transaction
-            send_data_index <= send_data_index + 1;					-- increment to next value
-            waitclocks(i_clk, 1);
-            i_data_parallel <= i_data_values(send_data_index);
-            waitclocks(i_clk, 4);
-        end loop;
-    
-        tx_start <= '1';										-- i_clk 8th transaction
-        waitclocks(i_clk, 2);
-        tx_start <= '0';										-- 8th transaction i_clked
-    
-        wait until tx_end'event and tx_end='1';				-- wait until SPI controller signals done with 8th transaction
-    
-        wait until start'event and start='1';
-    
-        wait; 													-- stop the process to avoid an infinite loop
-    
-    end process master_stimulus;
+                    tx_start <= '1';										-- i_clk transaction
+                    
+                when WAIT_STATE =>
+                    tx_start <= '0';
+                    i_data_parallel <= i_data_values(send_data_index);
+                    
+                when others =>
+                     tx_start <= 'X';
+                     i_data_parallel <= (others => 'X');
+                     xaxis_data <= (others => 'X');
+                     yaxis_data <= (others => 'X');
+                     zaxis_data <= (others => 'X');
+            end case;     
+    end process output;
 
 
 end Behavioral;
