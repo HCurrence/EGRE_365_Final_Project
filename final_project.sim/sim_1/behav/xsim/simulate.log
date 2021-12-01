@@ -33,35 +33,4 @@ Time: 530775 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  F
 Error: ERROR - incorrect value on master_data_received
 Time: 563805 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
 Error: ERROR - incorrect value on master_data_received
-Time: 596835 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 629865 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 662895 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 695925 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 728955 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 761985 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 795015 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Stopped at time : 10 ns : File "C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd" Line 60
-Stopped at time : 10 ns : File "C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd" Line 60
-Stopped at time : 245 ns : File "C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd" Line 60
-Stopped at time : 255 ns : File "C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd" Line 60
-Error: ERROR - incorrect value on master_data_received
-Time: 68355 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 101385 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 134415 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 167445 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 200475 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Error: ERROR - incorrect value on master_data_received
-Time: 233505 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
-Stopped at time : 264745 ns : File "C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd" Line 60
-Error: ERROR - incorrect value on master_data_received
-Time: 266535 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.sr
+Time: 596835 ns  Iteration

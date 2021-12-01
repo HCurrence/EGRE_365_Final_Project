@@ -11,14 +11,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="3346001fs"></ZoomEndTime>
-      <Cursor1Time time="255000fs"></Cursor1Time>
+      <ZoomEndTime time="800000001fs"></ZoomEndTime>
+      <Cursor1Time time="800000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="121"></NameColumnWidth>
+      <NameColumnWidth column_width="116"></NameColumnWidth>
       <ValueColumnWidth column_width="72"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="22" />
+   <WVObjectSize size="21" />
    <wvobject fp_name="/tb_spi_controller/sys_clk_sig" type="logic">
       <obj_property name="ElementShortName">sys_clk_sig</obj_property>
       <obj_property name="ObjectShortName">sys_clk_sig</obj_property>
@@ -144,9 +144,5 @@
          <obj_property name="ElementShortName">read_write_state</obj_property>
          <obj_property name="ObjectShortName">read_write_state</obj_property>
       </wvobject>
-   </wvobject>
-   <wvobject fp_name="/tb_spi_controller/DUT2/counter" type="other">
-      <obj_property name="ElementShortName">counter</obj_property>
-      <obj_property name="ObjectShortName">counter</obj_property>
    </wvobject>
 </wave_config>

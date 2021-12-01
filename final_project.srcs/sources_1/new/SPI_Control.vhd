@@ -53,13 +53,15 @@ begin
         END IF;  
      END PROCESS clocked;
      
-     count : process(tx_end, count_reset)
+     count : process(tx_end, count_reset, i_clk)
      variable zero : std_logic_vector(15 downto 0) := (others => '0');
      begin
         if(count_reset = '1') then
             counter <= 1;
-        elsif(tx_end = '1') then
-            counter <= counter + 1;
+        elsif(rising_edge(i_clk)) then
+            if(tx_end = '1') then
+                counter <= counter + 1;
+            end if;
         end if;
      end process count;
      
@@ -137,6 +139,7 @@ begin
                         next_state <= IDLE;
                     end if;
                 WHEN OTHERS =>
+                   next_state <= IDLE;
         END CASE;
       END PROCESS nextstate;
                  
@@ -144,27 +147,11 @@ begin
     begin
         case(present_state) is
             when IDLE =>
-                 i_data_parallel <= i_data_values(send_data_index);
-                 tx_start <= '0';
+                i_data_parallel <= i_data_values(send_data_index);
+                tx_start <= '0';
                  
             when READ_WRITE => 
                 tx_start <= '0';
-                
-                if(read_write_state = '1') then
-                    if(counter = 3) then
-                        xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
-                    elsif(counter = 4) then
-                        xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
-                    elsif(counter = 5) then
-                        yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
-                    elsif(counter = 6) then
-                        yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
-                    elsif(counter = 7) then
-                        zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
-                    elsif(counter = 8) then
-                        zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
-                    end if;
-                end if;
             
                 i_data_parallel <= i_data_values(send_data_index);      -- set next data on i_data_parallel
 
@@ -175,13 +162,49 @@ begin
                 i_data_parallel <= i_data_values(send_data_index);
                 
             when others =>
-                 tx_start <= '0';
-                 i_data_parallel <= (others => '0');
-                 xaxis_data <= (others => '0');
-                 yaxis_data <= (others => '0');
-                 zaxis_data <= (others => '0');
+                 tx_start <= 'X';
+                 i_data_parallel <= (others => 'X');
+
         end case;        
     end process output;
 
+    outData : process(present_state, i_clk)
+    begin
+        if (rising_edge(i_clk)) then
+            case(present_state) is
+                when IDLE =>
+                     xaxis_data <= (others => 'X');
+                     yaxis_data <= (others => 'X');
+                     zaxis_data <= (others => 'X');
+                     
+                when READ_WRITE => 
+                    if(read_write_state = '1') then
+                        if(counter = 3) then
+                            xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                        elsif(counter = 4) then
+                            xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                        elsif(counter = 5) then
+                            yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                        elsif(counter = 6) then
+                            yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                        elsif(counter = 7) then
+                            zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                        elsif(counter = 8) then
+                            zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                        end if;
+                    end if;
+                
+                when WAIT_STATE =>
+                    xaxis_data <= (others => 'X');
+                     yaxis_data <= (others => 'X');
+                     zaxis_data <= (others => 'X');
+                    
+                when others =>
+                     xaxis_data <= (others => 'Z');
+                     yaxis_data <= (others => 'Z');
+                     zaxis_data <= (others => 'Z');
+            end case;
+        end if;
+    end process outData;
 
 end Behavioral;

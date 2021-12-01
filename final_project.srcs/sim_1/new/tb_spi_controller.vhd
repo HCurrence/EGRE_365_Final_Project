@@ -19,18 +19,6 @@ end tb_spi_controller;
 
 architecture rtl of tb_spi_controller is
 
--- This procedure waits for N number of falling edges on the specified
--- clock signal
-	
-procedure waitclocks(signal clock : std_logic;
-                       N : INTEGER) is
-	begin
-		for i in 1 to N loop
-			wait until clock'event and clock='0';	-- wait on falling edge
-		end loop;
-end waitclocks;
-
-
 component spi_controller
 generic(
 	N                     : integer := 8;      -- number of bit to serialize
