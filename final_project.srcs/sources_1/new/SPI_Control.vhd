@@ -179,7 +179,11 @@ begin
                      
                 when READ_WRITE => 
                     if(read_write_state = '1') then
-                        if(counter = 3) then
+                        if(counter = 1 or counter = 2) then
+                            xaxis_data <= (others => '0');
+                            yaxis_data <= (others => '0');
+                            zaxis_data <= (others => '0');
+                        elsif(counter = 3) then
                             xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
                         elsif(counter = 4) then
                             xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
@@ -196,13 +200,13 @@ begin
                 
                 when WAIT_STATE =>
                     xaxis_data <= (others => 'X');
-                     yaxis_data <= (others => 'X');
-                     zaxis_data <= (others => 'X');
+                    yaxis_data <= (others => 'X');
+                    zaxis_data <= (others => 'X');
                     
                 when others =>
-                     xaxis_data <= (others => 'Z');
-                     yaxis_data <= (others => 'Z');
-                     zaxis_data <= (others => 'Z');
+                    xaxis_data <= (others => 'Z');
+                    yaxis_data <= (others => 'Z');
+                    zaxis_data <= (others => 'Z');
             end case;
         end if;
     end process outData;
