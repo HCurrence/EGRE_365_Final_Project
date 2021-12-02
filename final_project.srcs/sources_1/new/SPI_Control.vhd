@@ -54,8 +54,11 @@ begin
      END PROCESS clocked;
      
      count : process(o_data_parallel, count_reset, i_clk)
+     variable zero : std_logic_vector(15 downto 0) := (others => '0');
      begin
         if(count_reset = '1') then
+            counter <= 1;
+        elsif(o_data_parallel'last_value = zero) then
             counter <= 1;
         --elsif(rising_edge(i_clk)) then
             elsif(o_data_parallel'event) then
@@ -64,12 +67,15 @@ begin
         --end if;
      end process count;
      
-     send_index : process(i_clk, tx_end, count_reset, present_state, o_data_parallel)
+     send_index : process(i_clk, count_reset, present_state, o_data_parallel)
+     variable zero : std_logic_vector(15 downto 0) := (others => '0');
      begin
         if(count_reset = '1') then
             send_data_index <= 1;
         elsif(o_data_parallel'event) then -- used to depend on rising_edge(i_clk)
-            if(present_state = READ_WRITE) then
+            if(o_data_parallel'last_value = zero) then
+                send_data_index <= 1;
+            elsif(present_state = READ_WRITE) then
                 send_data_index <= send_data_index + 1;					-- increment to next value
                 if(send_data_index >= 8) then
                     send_data_index <= 8;
@@ -80,7 +86,7 @@ begin
         end if;
      end process send_index;
  
-     nextstate : PROCESS(present_state, start, reset, tx_end)
+     nextstate : PROCESS(present_state, start, reset)
         BEGIN
             CASE present_state is
                 WHEN IDLE =>
@@ -160,8 +166,8 @@ begin
                 i_data_parallel <= i_data_values(send_data_index);
                 
             when others =>
-                 tx_start <= 'X';
-                 i_data_parallel <= (others => 'X');
+                tx_start <= 'X';
+                i_data_parallel <= (others => 'X');
 
         end case;        
     end process output;
