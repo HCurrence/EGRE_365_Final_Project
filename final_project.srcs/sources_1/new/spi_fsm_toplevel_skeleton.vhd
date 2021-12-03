@@ -44,11 +44,11 @@ generic(
     i_miso                      : in  std_logic);
 end component;
 
-component SPI_Control is
+component FSM is
   port ( -- Inputs --
          start : in std_logic;                              -- from clock_divider
          reset : in std_logic;                              -- i_rstb
-         tx_end : in std_logic;                             -- o_tx_end
+         --tx_end : in std_logic;                             -- o_tx_end
          o_data_parallel: in std_logic_vector(15 downto 0); -- o_data_parallel
          i_clk : in std_logic;                              -- input clock
          -- Outputs --
@@ -65,15 +65,15 @@ component clock_divider is
        sclk : OUT std_logic);
 END component;
 
-
+constant N          : integer := 16; 
 --SIGNALS
 signal o_data_parallel_s:std_logic_vector(N-1 downto 0);
 signal i_data_parallel_s:std_logic_vector(N-1 downto 0);
 signal i_tx_start_s:std_logic;
 signal o_tx_end_s:std_logic;
-signal X:std_logic_vector(N-1);
-signal Y:std_logic_vector(N-1);
-Signal Z :std_logic_vector(N-1);
+signal X:std_logic_vector(N-1 downto 0);
+signal Y:std_logic_vector(N-1 downto 0);
+Signal Z :std_logic_vector(N-1 downto 0);
 Signal clk: std_logic;
 BEGIN
 
@@ -95,19 +95,20 @@ PORT MAP(
         i_miso => MISO);              
     
 
-SM: ENTITY work.SPI_CONTROl(behavior)
+SM: ENTITY work.SPI_Control(behavior)
 PORT MAP(
          start => clk,
-         reset=> CPU_RESET,
-         --tx_end =>
+         reset=> CPU_RESETN,
+        
          o_data_parallel => o_data_parallel_s(N-1 downto 0),
-         i_clk => SYS_CLK,
+         i_clk => SYS_CLK
          -- Outputs --
-         tx_start =>
-         i_data_parallel =>
-         xaxis_data =>
-         yaxis_data =>
-         zaxis_data => clk);
+         --tx_start =>
+        -- i_data_parallel =>
+         --xaxis_data =>
+         --yaxis_data =>
+         --zaxis_data => clk
+         );
          
 
 
