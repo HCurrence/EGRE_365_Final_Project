@@ -37,19 +37,21 @@ constant i_data_values : output_value_array := (std_logic_vector(to_unsigned(16#
 --Signals
 signal send_data_index : integer := 1;
 
-TYPE state_type IS (reset_state, waitend, ready, write_1, write_1_start, write_1_wait,
-                    write_2, write_2_start, write_2_wait,
-                    read_1, read_1_start, read_1_wait,
-                    read_2, read_2_start, read_2_wait,
-                    read_3, read_3_start, read_3_wait,
-                    read_4, read_4_start, read_4_wait,
-                    read_5, read_5_start, read_5_wait,
-                    read_6, read_6_start, read_6_wait);
+TYPE state_type IS (reset_state, waitend, ready, 
+                    write_1, write_1_start, write_1_wait, write_1_out,
+                    write_2, write_2_start, write_2_wait, write_2_out,
+                    read_1, read_1_start, read_1_wait, read_1_out,
+                    read_2, read_2_start, read_2_wait, read_2_out,
+                    read_3, read_3_start, read_3_wait, read_3_out,
+                    read_4, read_4_start, read_4_wait, read_4_out,
+                    read_5, read_5_start, read_5_wait, read_5_out,
+                    read_6, read_6_start, read_6_wait, read_6_out);
 SIGNAL present_state, next_state : state_type;
 signal count_reset : std_logic;
 signal counter : integer;
 
 begin
+
     clocked : PROCESS(i_clk,reset)
        BEGIN
          IF(reset='0') THEN 
@@ -127,10 +129,12 @@ begin
                         end if;
                     when write_1_wait =>
                         if(tx_end = '1') then
-                            next_state <= write_2;
+                            next_state <= write_1_out;
                         else
                             next_state <= present_state;
                         end if;
+                    when write_1_out =>
+                        next_state <= write_2;
                     when write_2 =>
                         next_state <= write_2_start;
                     when write_2_start =>
@@ -141,10 +145,12 @@ begin
                         end if;
                     when write_2_wait =>
                         if(tx_end = '1') then
-                            next_state <= read_1;
+                            next_state <= write_2_out;
                         else
                             next_state <= present_state;
                         end if;
+                    when write_2_out =>
+                        next_state <= read_1;
                     when read_1 =>
                         next_state <= read_1_start;
                     when read_1_start =>
@@ -155,10 +161,12 @@ begin
                         end if;
                     when read_1_wait =>
                         if(tx_end = '1') then
-                            next_state <= read_2;
+                            next_state <= read_1_out;
                         else
                             next_state <= present_state;
                         end if;
+                    when read_1_out =>
+                        next_state <= read_2;
                     when read_2 =>
                         next_state <= read_2_start;
                     when read_2_start =>
@@ -169,10 +177,12 @@ begin
                         end if;
                     when read_2_wait =>
                         if(tx_end = '1') then
-                            next_state <= read_3;
+                            next_state <= read_2_out;
                         else
                             next_state <= present_state;
                         end if;
+                    when read_2_out =>
+                        next_state <= read_3;
                     when read_3 =>
                         next_state <= read_3_start;
                     when read_3_start =>
@@ -183,10 +193,12 @@ begin
                         end if;
                     when read_3_wait =>
                         if(tx_end = '1') then
-                            next_state <= read_4;
+                            next_state <= read_3_out;
                         else
                             next_state <= present_state;
                         end if;
+                    when read_3_out =>
+                        next_state <= read_4;
                     when read_4 =>
                         next_state <= read_4_start;
                     when read_4_start =>
@@ -197,10 +209,12 @@ begin
                         end if;
                     when read_4_wait =>
                         if(tx_end = '1') then
-                            next_state <= read_5;
+                            next_state <= read_4_out;
                         else
                             next_state <= present_state;
                         end if;
+                    when read_4_out =>
+                        next_state <= read_5;
                     when read_5 =>
                         next_state <= read_5_start;
                     when read_5_start =>
@@ -211,10 +225,12 @@ begin
                         end if;
                     when read_5_wait =>
                         if(tx_end = '1') then
-                            next_state <= read_6;
+                            next_state <= read_5_out;
                         else
                             next_state <= present_state;
                         end if;
+                    when read_5_out =>
+                        next_state <= read_6;
                     when read_6 =>
                         next_state <= read_6_start;
                     when read_6_start =>
@@ -225,10 +241,12 @@ begin
                         end if;
                     when read_6_wait =>
                         if(tx_end = '1') then
-                            next_state <= waitend;
+                            next_state <= read_6_out;
                         else
                             next_state <= present_state;
                         end if;
+                    when read_6_out =>
+                        next_state <= waitend;
                     when reset_state =>
                         if(reset = '1') then
                             count_reset <= '0';
@@ -306,7 +324,7 @@ begin
             when read_6_wait =>
                 tx_start <= '0';
             when others =>
-                i_data_parallel <= (others => 'Z');
+                i_data_parallel <= (others => 'X');
                 tx_start <= '0';
         end case;
       
@@ -317,94 +335,36 @@ begin
     begin
         if (rising_edge(i_clk)) then
             case (present_state) is
-                    when waitend | ready | reset_state => 
-                        xaxis_data <= (others => 'X');
-                        yaxis_data <= (others => 'X');
-                        zaxis_data <= (others => 'X');
-                    when write_1 | write_1_start | write_1_wait =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when write_2 | write_2_start | write_2_wait =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_1 =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_1_start =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_1_wait =>
+                    when read_1_out =>
                         xaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
                         yaxis_data <= (others => '0');
                         zaxis_data <= (others => '0');
-                    when read_2 =>
-                        --xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_2_start =>
-                        --xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_2_wait =>
+                    when read_2_out =>
                         xaxis_data(15 downto 8) <= o_data_parallel(7 downto 0);
                         yaxis_data <= (others => '0');
                         zaxis_data <= (others => '0');
-                    when read_3 =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_3_start =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_3_wait =>
+                    when read_3_out =>
                         yaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
                         xaxis_data <= (others => '0');
                         zaxis_data <= (others => '0');
-                    when read_4 =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_4_start =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_4_wait =>
+                    when read_4_out =>
                         yaxis_data(15 downto 8) <= o_data_parallel(7 downto 0);
                         xaxis_data <= (others => '0');
                         zaxis_data <= (others => '0');
-                    when read_5 =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_5_start =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_5_wait =>
+                    when read_5_out =>
                         zaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
                         xaxis_data <= (others => '0');
                         yaxis_data <= (others => '0');
-                    when read_6 =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_6_start =>
-                        xaxis_data <= (others => '0');
-                        yaxis_data <= (others => '0');
-                        zaxis_data <= (others => '0');
-                    when read_6_wait =>
+                    when read_6_out =>
                         zaxis_data(15 downto 8) <= o_data_parallel(7 downto 0);
                         xaxis_data <= (others => '0');
                         yaxis_data <= (others => '0');
+                    when reset_state =>
+                        xaxis_data <= (others => '0');
+                        yaxis_data <= (others => '0');
+                        zaxis_data <= (others => '0');
                     when others =>
-                        xaxis_data <= (others => 'Z');
-                        yaxis_data <= (others => 'Z');
-                        zaxis_data <= (others => 'Z');
+                        
                 end case;
         end if;
     end process outData;
