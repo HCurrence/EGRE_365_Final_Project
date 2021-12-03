@@ -22,6 +22,7 @@ architecture Behavioral of SPI_Control is
 -- Constants
 constant N          : integer := 16;   -- number of bits send per SPI transaction
 constant NO_VECTORS : integer := 8;    -- number of SPI transactions to simulate
+constant zero       : std_logic_vector(15 downto 0) := (others => '0');
 
 type output_value_array is array (1 to NO_VECTORS) of std_logic_vector(N-1 downto 0);
 constant i_data_values : output_value_array := (std_logic_vector(to_unsigned(16#2C08#,N)),
@@ -54,13 +55,12 @@ begin
      END PROCESS clocked;
      
      count : process(o_data_parallel, count_reset, i_clk)
-     variable zero : std_logic_vector(15 downto 0) := (others => '0');
      begin
         if(count_reset = '1') then
             counter <= 1;
-        elsif(o_data_parallel'last_value = zero) then
-            counter <= 1;
         --elsif(rising_edge(i_clk)) then
+            elsif(o_data_parallel'last_value = zero) then
+                counter <= 1;
             elsif(o_data_parallel'event) then
                 counter <= counter + 1;
             end if;
@@ -68,7 +68,6 @@ begin
      end process count;
      
      send_index : process(i_clk, count_reset, present_state, o_data_parallel)
-     variable zero : std_logic_vector(15 downto 0) := (others => '0');
      begin
         if(count_reset = '1') then
             send_data_index <= 1;
@@ -188,27 +187,27 @@ begin
                             yaxis_data <= (others => '0');
                             zaxis_data <= (others => '0');
                         elsif(counter = 3) then
-                            xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                            xaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
                             yaxis_data <= (others => '0');
                             zaxis_data <= (others => '0');
                         elsif(counter = 4) then
-                            xaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                            xaxis_data(15 downto 8) <= o_data_parallel(7 downto 0);
                             yaxis_data <= (others => '0');
                             zaxis_data <= (others => '0');
                         elsif(counter = 5) then
-                            yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                            yaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
                             xaxis_data <= (others => '0');
                             zaxis_data <= (others => '0');
                         elsif(counter = 6) then
-                            yaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                            yaxis_data(15 downto 8) <= o_data_parallel(7 downto 0);
                             xaxis_data <= (others => '0');
                             zaxis_data <= (others => '0');
                         elsif(counter = 7) then
-                            zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(7 downto 0)), 16));
+                            zaxis_data(7 downto 0) <= o_data_parallel(7 downto 0);
                             xaxis_data <= (others => '0');
                             yaxis_data <= (others => '0');
                         elsif(counter = 8) then
-                            zaxis_data <= std_logic_vector(resize(unsigned(o_data_parallel(15 downto 8)), 16));
+                            zaxis_data(15 downto 8) <= o_data_parallel(7 downto 0);
                             xaxis_data <= (others => '0');
                             yaxis_data <= (others => '0');
                         end if;
