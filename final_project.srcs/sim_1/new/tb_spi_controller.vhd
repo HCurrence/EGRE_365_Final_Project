@@ -36,7 +36,7 @@ generic(
 	i_miso                      : in  std_logic);
 end component;
 
-component SPI_Control
+component FSM
   port ( start : in std_logic;                              -- clock_divider
          reset : in std_logic;                              -- reset
          tx_end : in std_logic;                             -- o_tx_end
@@ -145,7 +145,7 @@ clk_divider : entity work.clock_divider(behavior)
            sclk => slow_clk);
 
 
-DUT2 : SPI_Control
+DUT2 : FSM
   port map(
 	start                       => slow_clk,
 	reset                       => i_rstb,
