@@ -13,6 +13,6 @@ Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
 Compiling architecture rtl of entity xil_defaultlib.spi_controller [\spi_controller(n=16)\]
 Compiling architecture behavior of entity xil_defaultlib.clock_divider [\clock_divider(clk_freq=100)\]
-Compiling architecture behavioral of entity xil_defaultlib.SPI_Control [spi_control_default]
+Compiling architecture behavioral of entity xil_defaultlib.FSM [fsm_default]
 Compiling architecture rtl of entity xil_defaultlib.tb_spi_controller
 Built simulation snapshot tb_spi_controller_behav
