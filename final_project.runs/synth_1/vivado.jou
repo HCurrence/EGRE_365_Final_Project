@@ -2,11 +2,11 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Fri Dec  3 09:56:04 2021
-# Process ID: 23060
+# Start of session at: Fri Dec  3 12:38:27 2021
+# Process ID: 8580
 # Current directory: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.runs/synth_1
-# Command line: vivado.exe -log SPI_Control.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source SPI_Control.tcl
-# Log file: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.runs/synth_1/SPI_Control.vds
+# Command line: vivado.exe -log clock_divider.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source clock_divider.tcl
+# Log file: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.runs/synth_1/clock_divider.vds
 # Journal file: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
-source SPI_Control.tcl -notrace
+source clock_divider.tcl -notrace

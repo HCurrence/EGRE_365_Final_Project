@@ -40,4 +40,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log SPI_Control.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source SPI_Control.tcl
+EAStep vivado -log clock_divider.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source clock_divider.tcl
