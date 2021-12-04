@@ -11,9 +11,9 @@ echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executi
 exit
 
 if [ -z "$PATH" ]; then
-  PATH=C:/X/Vivado/2020.2/ids_lite/ISE/bin/nt64;C:/X/Vivado/2020.2/ids_lite/ISE/lib/nt64:C:/X/Vivado/2020.2/bin
+  PATH=C:/Xilinx/Vivado/2020.2/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2020.2/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2020.2/bin
 else
-  PATH=C:/X/Vivado/2020.2/ids_lite/ISE/bin/nt64;C:/X/Vivado/2020.2/ids_lite/ISE/lib/nt64:C:/X/Vivado/2020.2/bin:$PATH
+  PATH=C:/Xilinx/Vivado/2020.2/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2020.2/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2020.2/bin:$PATH
 fi
 export PATH
 
@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.runs/synth_1'
+HD_PWD='C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -40,4 +40,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log SPI_Control.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source SPI_Control.tcl
+EAStep vivado -log spi_fsm_toplevel.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source spi_fsm_toplevel.tcl

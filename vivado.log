@@ -2,10 +2,10 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Fri Nov 12 15:14:21 2021
-# Process ID: 7396
+# Start of session at: Fri Dec  3 12:39:28 2021
+# Process ID: 9980
 # Current directory: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9592 C:\Users\micha\OneDrive\Documents\GitHub\EGRE_365_Final_Project\final_project.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2436 C:\Users\micha\OneDrive\Documents\GitHub\EGRE_365_Final_Project\final_project.xpr
 # Log file: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/vivado.log
 # Journal file: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project\vivado.jou
 #-----------------------------------------------------------
@@ -13,17 +13,583 @@ start_gui
 open_project C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.xpr
 INFO: [Project 1-313] Project file moved from 'C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project' since last save.
 WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.gen/sources_1', nor could it be found using path 'C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.gen/sources_1'.
-WARNING: [filemgmt 56-2] IPUserFilesDir: Could not find the directory 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.ip_user_files', nor could it be found using path 'C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.ip_user_files'.
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
-upexit
-INFO: [Common 17-206] Exiting Vivado at Fri Nov 12 15:18:42 2021...
-/Downloads/lab8_2019/spi_controller.vhd
 update_compile_order -fileset sources_1
-set_property SOURCE_SET sources_1 [get_filesets sim_1]
-add_files -fileset sim_1 -norecurse C:/Users/micha/Downloads/lab8_2019/tb_spi_controller.vhd
-update_compile_order -fileset sim_1
-update_compile_order -fileset sim_1
+add_files -norecurse C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/new/spi_fsm_toplevel_skeleton.vhd
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property is_enabled false [get_files  C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/new/spi_fsm_toplevel_skeleton.vhd]
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_spi_controller' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim'
+"xvhdl --relax -prj tb_spi_controller_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/new/FSM.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'FSM'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/lab6_assignment_sources/clock_divider.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'clock_divider'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/lab8_2019/spi_controller.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'spi_controller'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_spi_controller'
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim'
+"xelab -wto 47a609826b8c41dea463721b7144da2d --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_spi_controller_behav xil_defaultlib.tb_spi_controller -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 47a609826b8c41dea463721b7144da2d --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_spi_controller_behav xil_defaultlib.tb_spi_controller -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling architecture rtl of entity xil_defaultlib.spi_controller [\spi_controller(n=16)\]
+Compiling architecture behavior of entity xil_defaultlib.clock_divider [\clock_divider(clk_freq=100)\]
+Compiling architecture behavioral of entity xil_defaultlib.FSM [fsm_default]
+Compiling architecture rtl of entity xil_defaultlib.tb_spi_controller
+Built simulation snapshot tb_spi_controller_behav
+
+****** Webtalk v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim/xsim.dir/tb_spi_controller_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-186] 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim/xsim.dir/tb_spi_controller_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Fri Dec  3 12:42:15 2021. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2020.2/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Fri Dec  3 12:42:15 2021...
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 1017.117 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '6' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_spi_controller_behav -key {Behavioral:sim_1:Functional:tb_spi_controller} -tclbatch {tb_spi_controller.tcl} -view {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/tb_spi_controller_behav.wcfg} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+open_wave_config C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/tb_spi_controller_behav.wcfg
+WARNING: Simulation object /tb_spi_controller/DUT2/read_write_state was not found in the design.
+source tb_spi_controller.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+xsim: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 1017.117 ; gain = 0.000
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_spi_controller_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1017.117 ; gain = 0.000
+update_compile_order -fileset sources_1
+restart
+INFO: [Simtcl 6-17] Simulation restarted
+restart: Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 1017.117 ; gain = 0.000
+run 800 us
+Error: ERROR - incorrect value on master_data_received
+Time: 68295 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 101365 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 134435 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 167505 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 200575 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 233645 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 266755 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 332895 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 365965 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 399035 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 432105 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 465175 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 498245 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 531355 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 597495 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 630565 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 663635 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 696705 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 729775 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 762845 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 795955 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1
+
+launch_runs synth_1 -jobs 8
+[Fri Dec  3 12:57:44 2021] Launched synth_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 8
+[Fri Dec  3 12:58:24 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Fri Dec  3 13:02:02 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+open_hw_manager
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2020.2
+  **** Build date : Nov 18 2020 at 10:01:48
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2020.2
+  ****** Build date   : Nov 03 2020-16:02:56
+    **** Build number : 2020.2.1604437376
+      ** Copyright 2017-2020 Xilinx, Inc. All Rights Reserved.
+
+
+
+connect_hw_server: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 1017.117 ; gain = 0.000
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+reset_run impl_1 -prev_step 
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Fri Dec  3 13:03:27 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+add_files -fileset constrs_1 -norecurse C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/Nexys4DDR_Master.xdc
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Fri Dec  3 13:04:37 2021] Launched synth_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1/runme.log
+[Fri Dec  3 13:04:37 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+close_hw_manager
+set_property is_enabled true [get_files  C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/new/spi_fsm_toplevel_skeleton.vhd]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1
+
+launch_runs synth_1 -jobs 8
+[Fri Dec  3 13:09:09 2021] Launched synth_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1
+
+launch_runs synth_1 -jobs 8
+[Fri Dec  3 13:14:47 2021] Launched synth_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 8
+[Fri Dec  3 13:15:35 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Fri Dec  3 13:16:49 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+open_hw_manager
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2020.2
+  **** Build date : Nov 18 2020 at 10:01:48
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2020.2
+  ****** Build date   : Nov 03 2020-16:02:56
+    **** Build number : 2020.2.1604437376
+      ** Copyright 2017-2020 Xilinx, Inc. All Rights Reserved.
+
+
+
+connect_hw_server: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 1017.117 ; gain = 0.000
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210292AD30C2A
+set_property PROGRAM.FILE {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/spi_fsm_toplevel.bit} [get_hw_devices xc7a100t_0]
+current_hw_device [get_hw_devices xc7a100t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/spi_fsm_toplevel.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/spi_fsm_toplevel.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/spi_fsm_toplevel.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_spi_controller' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim'
+"xvhdl --relax -prj tb_spi_controller_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/new/FSM.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'FSM'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/lab6_assignment_sources/clock_divider.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'clock_divider'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/lab8_2019/spi_controller.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'spi_controller'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_spi_controller'
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim'
+"xelab -wto 47a609826b8c41dea463721b7144da2d --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_spi_controller_behav xil_defaultlib.tb_spi_controller -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 47a609826b8c41dea463721b7144da2d --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_spi_controller_behav xil_defaultlib.tb_spi_controller -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling architecture rtl of entity xil_defaultlib.spi_controller [\spi_controller(n=16)\]
+Compiling architecture behavior of entity xil_defaultlib.clock_divider [\clock_divider(clk_freq=100)\]
+Compiling architecture behavioral of entity xil_defaultlib.FSM [fsm_default]
+Compiling architecture rtl of entity xil_defaultlib.tb_spi_controller
+Built simulation snapshot tb_spi_controller_behav
+
+****** Webtalk v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim/xsim.dir/tb_spi_controller_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-186] 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim/xsim.dir/tb_spi_controller_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Fri Dec  3 13:21:49 2021. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2020.2/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Fri Dec  3 13:21:49 2021...
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 2529.477 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '5' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_spi_controller_behav -key {Behavioral:sim_1:Functional:tb_spi_controller} -tclbatch {tb_spi_controller.tcl} -view {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/tb_spi_controller_behav.wcfg} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+open_wave_config C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/tb_spi_controller_behav.wcfg
+WARNING: Simulation object /tb_spi_controller/DUT2/read_write_state was not found in the design.
+source tb_spi_controller.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+xsim: Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 2529.477 ; gain = 0.000
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_spi_controller_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:06 ; elapsed = 00:00:12 . Memory (MB): peak = 2529.477 ; gain = 0.000
+restart
+INFO: [Simtcl 6-17] Simulation restarted
+restart: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2529.477 ; gain = 0.000
+run 800 us
+Error: ERROR - incorrect value on master_data_received
+Time: 68295 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 101365 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 134435 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 167505 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 200575 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 233645 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 266755 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 332895 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 365965 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 399035 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 432105 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 465175 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 498245 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 531355 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 597495 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 630565 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 663635 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 696705 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 729775 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 762845 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 795955 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+current_wave_config {tb_spi_controller_behav.wcfg}
+tb_spi_controller_behav.wcfg
+add_wave {{/tb_spi_controller/DUT2/zero}} 
+restart
+INFO: [Simtcl 6-17] Simulation restarted
+restart: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2612.688 ; gain = 0.000
+run 800 us
+Error: ERROR - incorrect value on master_data_received
+Time: 68295 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 101365 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 134435 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 167505 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 200575 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 233645 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 266755 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 332895 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 365965 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 399035 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 432105 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 465175 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 498245 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 531355 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 597495 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 630565 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 663635 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 696705 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 729775 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 762845 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+Error: ERROR - incorrect value on master_data_received
+Time: 795955 ns  Iteration: 1  Process: /tb_spi_controller/spi_master_monitor  File: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/spi_fsm_toplevel.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1
+
+launch_runs synth_1 -jobs 8
+[Fri Dec  3 13:32:25 2021] Launched synth_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 8
+[Fri Dec  3 13:33:07 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Fri Dec  3 13:34:10 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+open_run impl_1
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2913.805 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2020.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 3599.191 ; gain = 0.000
+Restored from archive | CPU: 0.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 3599.191 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3599.191 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:27 ; elapsed = 00:00:23 . Memory (MB): peak = 3786.949 ; gain = 1173.941
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/spi_fsm_toplevel.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/spi_fsm_toplevel.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1
+
+launch_runs synth_1 -jobs 8
+[Fri Dec  3 13:40:05 2021] Launched synth_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 8
+[Fri Dec  3 13:40:45 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+close_design
+open_run impl_1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 3803.230 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2020.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 3803.230 ; gain = 0.000
+Restored from archive | CPU: 0.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 3803.230 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3803.230 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Fri Dec  3 13:42:40 2021] Launched impl_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/runme.log
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/spi_fsm_toplevel.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/impl_1/spi_fsm_toplevel.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1
+
+launch_runs synth_1 -jobs 8
+[Fri Dec  3 13:47:18 2021] Launched synth_1...
+Run output will be captured here: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1/runme.log
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Dec  3 14:05:46 2021...

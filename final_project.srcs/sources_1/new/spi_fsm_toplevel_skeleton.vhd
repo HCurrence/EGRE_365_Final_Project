@@ -75,13 +75,16 @@ signal X:std_logic_vector(N-1 downto 0);
 signal Y:std_logic_vector(N-1 downto 0);
 Signal Z :std_logic_vector(N-1 downto 0);
 Signal clk: std_logic;
+
 BEGIN
 
 
 
 
 
-SPI: ENTITY work.spi_controller(rti)
+SPI: ENTITY work.spi_controller(rtl)
+Generic MAP(
+N=>N)
 PORT MAP(
         i_clk  => SYS_CLK,                    
         i_rstb =>CPU_RESETN,         
@@ -95,7 +98,7 @@ PORT MAP(
         i_miso => MISO);              
     
 
-SM: ENTITY work.SPI_Control(behavior)
+SM: ENTITY work.FSM(behavior)
 PORT MAP(
          start => clk,
          reset=> CPU_RESETN,
@@ -104,7 +107,7 @@ PORT MAP(
          i_clk => SYS_CLK
          -- Outputs --
          --tx_start =>
-        -- i_data_parallel =>
+         -- i_data_parallel =>
          --xaxis_data =>
          --yaxis_data =>
          --zaxis_data => clk

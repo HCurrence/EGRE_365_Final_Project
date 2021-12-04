@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1638543361">
-  <File Type="PA-TCL" Name="SPI_Control.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="SPI_Control_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="SPI_Control_reports.tcl"/>
-  <File Type="RDS-RDS" Name="SPI_Control.vds"/>
-  <File Type="RDS-UTIL" Name="SPI_Control_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="SPI_Control_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="SPI_Control.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="SPI_Control_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="SPI_Control_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1638557238">
+  <File Type="PA-TCL" Name="spi_fsm_toplevel.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="spi_fsm_toplevel_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="spi_fsm_toplevel_reports.tcl"/>
+  <File Type="RDS-RDS" Name="spi_fsm_toplevel.vds"/>
+  <File Type="RDS-UTIL" Name="spi_fsm_toplevel_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="spi_fsm_toplevel_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="spi_fsm_toplevel.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="spi_fsm_toplevel_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="spi_fsm_toplevel_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/new/SPI_Control.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/new/FSM.vhd">
       <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../final_project_v2/final_project_v2.srcs/sources_1/new/FSM.vhd"/>
+        <Attr Name="ImportTime" Val="1638548368"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/imports/lab6_assignment_sources/clock_divider.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PPRDIR/../lab_6_2/lab_6_2.srcs/sources_1/imports/lab6_assignment_sources/clock_divider.vhd"/>
         <Attr Name="ImportTime" Val="1635049728"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -28,21 +29,32 @@
     </File>
     <File Path="$PSRCDIR/sources_1/imports/lab8_2019/spi_controller.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PPRDIR/../lab_8/lab_8.srcs/sources_1/imports/lab8_2019/spi_controller.vhd"/>
         <Attr Name="ImportTime" Val="1636651541"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/spi_fsm_toplevel_skeleton.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="SPI_Control"/>
+      <Option Name="TopModule" Val="spi_fsm_toplevel"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/Nexys4DDR_Master.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>

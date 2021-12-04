@@ -100,8 +100,9 @@ begin
         end if;
      end process send_index;
  
-     nextstate : PROCESS(present_state, start, reset, tx_end)
+     nextstate : PROCESS(present_state, start, reset, tx_end, i_clk)
         BEGIN
+          
             if (reset = '0') then
                 next_state <= RESET_STATE;
                 count_reset <= '1';
@@ -258,11 +259,13 @@ begin
                         
                 end case;
             end if;
+          
       END PROCESS nextstate;
       
       --change state outputs
       output : process(present_state, i_clk, send_data_index)
       begin
+      if(rising_edge(i_clk)) then
         case (present_state) is
             when waitend | ready | reset_state =>
                 i_data_parallel <= (others => 'X');
@@ -327,6 +330,7 @@ begin
                 i_data_parallel <= (others => 'X');
                 tx_start <= '0';
         end case;
+        end if;
       
     end process output;
     
