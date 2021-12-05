@@ -28,7 +28,7 @@ END clock_divider;
 
 ARCHITECTURE behavior OF clock_divider IS
 
-    CONSTANT SLOW_CLOCK_FREQ : positive := 5;                 -- slow clock frequency in Hz
+    CONSTANT SLOW_CLOCK_FREQ : positive := 2;                 -- slow clock frequency in Hz
     CONSTANT DIVISOR : positive := CLK_FREQ/SLOW_CLOCK_FREQ;  -- how much to divide clock by
 	SIGNAL sclki : std_logic := '0';
   

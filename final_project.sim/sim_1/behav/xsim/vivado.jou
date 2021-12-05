@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Dec  5 14:56:25 2021
+# Process ID: 1320
+# Current directory: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8952 C:\Users\micha\OneDrive\Documents\GitHub\EGRE_365_Final_Project\final_project.sim\sim_1\behav\xsim\tb_spi_controller_behav.wdb
+# Log file: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim/vivado.log
+# Journal file: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.sim/sim_1/behav/xsim\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_wave_database {C:\Users\micha\OneDrive\Documents\GitHub\EGRE_365_Final_Project\final_project.sim\sim_1\behav\xsim\tb_spi_controller_behav.wdb}

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Dec  3 13:47:20 2021
+# Process ID: 7176
+# Current directory: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1
+# Command line: vivado.exe -log spi_fsm_toplevel.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source spi_fsm_toplevel.tcl
+# Log file: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1/spi_fsm_toplevel.vds
+# Journal file: C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source spi_fsm_toplevel.tcl -notrace

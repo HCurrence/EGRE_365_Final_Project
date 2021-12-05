@@ -54,11 +54,13 @@ begin
 
     clocked : PROCESS(i_clk,reset)
        BEGIN
+       IF(rising_edge(i_clk))THEN
          IF(reset='0') THEN 
            present_state <= reset_state;
-        ELSIF(rising_edge(i_clk)) THEN
+        ELSE
           present_state <= next_state;
         END IF;  
+        END IF;
      END PROCESS clocked;
      
      count : process(tx_end, count_reset, i_clk)
@@ -102,7 +104,7 @@ begin
  
      nextstate : PROCESS(present_state, start, reset, tx_end, i_clk)
         BEGIN
-          
+     
             if (reset = '0') then
                 next_state <= RESET_STATE;
                 count_reset <= '1';
@@ -259,6 +261,7 @@ begin
                         
                 end case;
             end if;
+
           
       END PROCESS nextstate;
       

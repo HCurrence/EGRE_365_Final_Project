@@ -44,11 +44,11 @@ generic(
     i_miso                      : in  std_logic);
 end component;
 
-component FSM is
+component F_SM is
   port ( -- Inputs --
          start : in std_logic;                              -- from clock_divider
          reset : in std_logic;                              -- i_rstb
-         --tx_end : in std_logic;                             -- o_tx_end
+         tx_end : in std_logic;                             -- o_tx_end
          o_data_parallel: in std_logic_vector(15 downto 0); -- o_data_parallel
          i_clk : in std_logic;                              -- input clock
          -- Outputs --
@@ -96,32 +96,26 @@ PORT MAP(
         o_ss   =>CS,                 
         o_mosi =>MOSI,                  
         i_miso => MISO);              
-    
-
-SM: ENTITY work.FSM(behavior)
-PORT MAP(
-         start => clk,
-         reset=> CPU_RESETN,
-        
-         o_data_parallel => o_data_parallel_s(N-1 downto 0),
-         i_clk => SYS_CLK
-         -- Outputs --
-         --tx_start =>
-         -- i_data_parallel =>
-         --xaxis_data =>
-         --yaxis_data =>
-         --zaxis_data => clk
-         );
-         
-
-
+   
 
 CLK_DIV: ENTITY work.clock_divider(behavior)
 PORT MAP(
        mclk => SYS_CLK,
        sclk => clk);
 
-
+FSM: ENTITY work.FSM(Behavioral)
+PORT MAP(
+         start => clk,
+         reset=> CPU_RESETN,
+         tx_end => o_tx_end_s,
+         o_data_parallel => o_data_parallel_s(N-1 downto 0),
+         i_clk => SYS_CLK,
+         -- Outputs --
+        tx_start => i_tx_start_s,
+        i_data_parallel => i_data_parallel_s,
+         xaxis_data => LED(15 downto 0),
+         yaxis_data => Y,
+         zaxis_data => Z );
 
 
 end Structural;
