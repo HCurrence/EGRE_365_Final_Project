@@ -2,10 +2,10 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Mon Dec  6 20:00:39 2021
-# Process ID: 2384
+# Start of session at: Mon Dec  6 19:46:43 2021
+# Process ID: 27768
 # Current directory: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15716 C:\Users\hpcpe\Documents\VCU\EGRE 365\Labs\final_project\final_project.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10116 C:\Users\hpcpe\Documents\VCU\EGRE 365\Labs\final_project\final_project.xpr
 # Log file: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/vivado.log
 # Journal file: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project\vivado.jou
 #-----------------------------------------------------------
@@ -20,8 +20,14 @@ WARNING: [Project 1-509] GeneratedRun file for 'synth_1' not found
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/X/Vivado/2020.2/data/ip'.
-open_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:05 . Memory (MB): peak = 1016.754 ; gain = 0.000
+open_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:06 . Memory (MB): peak = 1018.383 ; gain = 0.000
 update_compile_order -fileset sources_1
-add_files -fileset constrs_1 -norecurse {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/Nexys4DDR_Master.xdc}}
-import_files -fileset constrs_1 {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/Nexys4DDR_Master.xdc}}
 import_files -norecurse {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project_v3/tb_spi_controller_behav.wcfg}}
+file mkdir C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project
+file mkdir C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project
+file mkdir C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project
+file mkdir C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project
+export_ip_user_files -of_objects  [get_files {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project/Nexys4DDR_Master.xdc}}] -no_script -reset -force -quiet
+remove_files  -fileset constrs_1 {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project/Nexys4DDR_Master.xdc}}
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Dec  6 19:57:50 2021...

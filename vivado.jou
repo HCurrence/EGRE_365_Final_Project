@@ -2,20 +2,16 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Mon Dec  6 19:46:43 2021
-# Process ID: 27768
+# Start of session at: Mon Dec  6 20:00:39 2021
+# Process ID: 2384
 # Current directory: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10116 C:\Users\hpcpe\Documents\VCU\EGRE 365\Labs\final_project\final_project.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15716 C:\Users\hpcpe\Documents\VCU\EGRE 365\Labs\final_project\final_project.xpr
 # Log file: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/vivado.log
 # Journal file: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project {C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.xpr}
 update_compile_order -fileset sources_1
+add_files -fileset constrs_1 -norecurse {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/Nexys4DDR_Master.xdc}}
+import_files -fileset constrs_1 {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/Nexys4DDR_Master.xdc}}
 import_files -norecurse {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project_v3/tb_spi_controller_behav.wcfg}}
-file mkdir C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project
-file mkdir C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project
-file mkdir C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project
-file mkdir C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project
-export_ip_user_files -of_objects  [get_files {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project/Nexys4DDR_Master.xdc}}] -no_script -reset -force -quiet
-remove_files  -fileset constrs_1 {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/constrs_1/imports/final_project/Nexys4DDR_Master.xdc}}

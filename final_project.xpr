@@ -106,6 +106,13 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/final_project_v3/tb_spi_controller_behav.wcfg">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../final_project_v3/tb_spi_controller_behav.wcfg"/>
+          <Attr Name="ImportTime" Val="1638483641"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="spi_fsm_toplevel"/>
@@ -117,7 +124,7 @@
       <File Path="$PSRCDIR/constrs_1/imports/final_project/Nexys4DDR_Master.xdc">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/Nexys4DDR_Master.xdc"/>
-          <Attr Name="ImportTime" Val="1638373154"/>
+          <Attr Name="ImportTime" Val="1638838773"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
