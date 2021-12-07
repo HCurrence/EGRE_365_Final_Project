@@ -1,0 +1,173 @@
+/*
+
+Xilinx Vivado v2020.2 (64-bit) [Major: 2020, Minor: 2]
+SW Build: 3064766 on Wed Nov 18 09:12:45 MST 2020
+IP Build: 3064653 on Wed Nov 18 14:17:31 MST 2020
+
+Process ID (PID): 2384
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Mon Dec 06 20:00:54 EST 2021
+Time zone: 	Eastern Standard Time (America/New_York)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 12
+
+Screen size: 1920x1080
+Screen resolution (DPI): 125
+Available screens: 1
+Default font: family=Segoe UI,name=Segoe UI,style=plain,size=15
+Scale size: 19
+
+Java version: 	11.0.2 64-bit
+Java home: 	C:/X/Vivado/2020.2/tps/win64/jre11.0.2
+Java executable location: 	C:/X/Vivado/2020.2/tps/win64/jre11.0.2/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	hpcpe
+User home directory: C:/Users/hpcpe
+User working directory: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: C:/X/Vivado
+HDI_APPROOT: C:/X/Vivado/2020.2
+RDI_DATADIR: C:/X/Vivado/2020.2/data
+RDI_BINDIR: C:/X/Vivado/2020.2/bin
+
+Vivado preferences file location: C:/Users/hpcpe/AppData/Roaming/Xilinx/Vivado/2020.2/vivado.xml
+Vivado preferences directory: C:/Users/hpcpe/AppData/Roaming/Xilinx/Vivado/2020.2/
+Vivado layouts directory: C:/Users/hpcpe/AppData/Roaming/Xilinx/Vivado/2020.2/data/layouts
+PlanAhead jar file location: 	C:/X/Vivado/2020.2/lib/classes/planAhead.jar
+Vivado log file location: 	C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/vivado.log
+Vivado journal file location: 	C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/vivado.jou
+Engine tmp dir: 	C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/.Xil/Vivado-2384-MSI
+
+Xilinx Environment Variables
+----------------------------
+XILINX: C:/X/Vivado/2020.2/ids_lite/ISE
+XILINX_DSP: C:/X/Vivado/2020.2/ids_lite/ISE
+XILINX_HLS: C:/X/Vitis_HLS/2020.2
+XILINX_PLANAHEAD: C:/X/Vivado/2020.2
+XILINX_VIVADO: C:/X/Vivado/2020.2
+XILINX_VIVADO_HLS: C:/X/Vivado/2020.2
+
+
+GUI allocated memory:	159 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,028 MB
+
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// bz (cr):  Open Project : addNotify
+// Opening Vivado Project: C:\Users\hpcpe\Documents\VCU\EGRE 365\Labs\final_project\final_project.xpr. Version: Vivado v2020.2 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project {C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.xpr} 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project {C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.xpr} 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 113 MB (+116286kb) [00:00:10]
+// [Engine Memory]: 1,028 MB (+926157kb) [00:00:10]
+// WARNING: HEventQueue.dispatchEvent() is taking  3047 ms.
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/X/Vivado/2020.2/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 58 MB. Current time: 12/6/21, 8:00:55 PM EST
+// Tcl Message: open_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:05 . Memory (MB): peak = 1016.754 ; gain = 0.000 
+// Project name: final_project; location: C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project; part: xc7a100tcsg324-1
+dismissDialog("Open Project"); // bz
+// a (cr): Critical Messages: addNotify
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 11 seconds
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f
+dismissDialog("Critical Messages"); // a
+// Elapsed time: 10 seconds
+selectButton(PAResourceCommand.PACommandNames_ADD_SOURCES, "Sources_add_sources"); // E
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// c (cr): Add Sources: addNotify
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_OR_CREATE_CONSTRAINT_FILES, "Add or create constraints"); // a
+selectButton("NEXT", "Next >"); // JButton
+selectTable(PAResourceAtoD.ConstraintsChooserPanel_FILE_TABLE, "Nexys4DDR_Master.xdc ; C:\\Users\\hpcpe\\Documents\\VCU\\EGRE 365\\Labs\\final_project\\final_project.srcs\\constrs_1\\imports\\final_project", 0, "C:\\Users\\hpcpe\\Documents\\VCU\\EGRE 365\\Labs\\final_project\\final_project.srcs\\constrs_1\\imports\\final_project", 1); // t
+selectButton(RDIResource.AbstractCombinedPanel_REMOVE_SELECTED_ELEMENTS, "Remove"); // E
+selectButton(PAResourceAtoD.ConstraintsChooserPanel_ADD_FILES, "Add Files"); // a
+// Elapsed time: 15 seconds
+setFileChooser("C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/Nexys4DDR_Master.xdc");
+selectButton("FINISH", "Finish"); // JButton
+// 'g' command handler elapsed time: 28 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: FILE_SET_CHANGE
+// [GUI Memory]: 131 MB (+12505kb) [00:01:04]
+// Tcl Message: add_files -fileset constrs_1 -norecurse {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/Nexys4DDR_Master.xdc}} 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: import_files -fileset constrs_1 {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/Nexys4DDR_Master.xdc}} 
+selectButton(PAResourceCommand.PACommandNames_ADD_SOURCES, "Sources_add_sources"); // E
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// c (cr): Add Sources: addNotify
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN, "Add or create design sources"); // a
+// Elapsed time: 19 seconds
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+// Elapsed time: 10 seconds
+setFileChooser("C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project_v3/tb_spi_controller_behav.wcfg");
+selectButton("FINISH", "Finish"); // JButton
+// 'g' command handler elapsed time: 39 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: import_files -norecurse {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project_v3/tb_spi_controller_behav.wcfg}} 
+// Elapsed time: 97 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 4); // D
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1]", 5); // D
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, Waveform Configuration File]", 8); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, Waveform Configuration File, tb_spi_controller_behav.wcfg]", 10, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, Waveform Configuration File, tb_spi_controller_behav.wcfg]", 10, false, false, false, false, true, false); // D - Popup Trigger
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ak
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+// aE (cr): Remove Sources: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Remove Sources"); // aE
+// Tcl Message: export_ip_user_files -of_objects  [get_files {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/tb_spi_controller_behav.wcfg}}] -no_script -reset -force -quiet 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: remove_files  -fileset sim_1 {{C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/tb_spi_controller_behav.wcfg}} 
+// Elapsed time: 20 seconds
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, Waveform Configuration File]", 8); // D
+// [GUI Memory]: 138 MB (+213kb) [00:03:54]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 78 MB. Current time: 12/6/21, 8:38:49 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,028 MB. GUI used memory: 78 MB. Current time: 12/7/21, 12:52:37 AM EST
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILE_SET_CHANGE
