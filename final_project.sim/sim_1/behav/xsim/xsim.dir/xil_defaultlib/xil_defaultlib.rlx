@@ -2,7 +2,4 @@
 2020.2
 Nov 18 2020
 09:47:47
-C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd,1638546694,vhdl,,,,tb_spi_controller,,,,,,,,
-C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/lab6_assignment_sources/clock_divider.vhd,1638552385,vhdl,C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd,,,clock_divider,,,,,,,,
-C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/lab8_2019/spi_controller.vhd,1638480937,vhdl,,,,spi_controller,,,,,,,,
-C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/new/FSM.vhd,1638553121,vhdl,,,,fsm,,,,,,,,
+C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd,1638372663,vhdl,,,,spi_control,,,,,,,,

@@ -1,6 +1,6 @@
 Vivado Simulator 2020.2
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 47a609826b8c41dea463721b7144da2d --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_spi_controller_behav xil_defaultlib.tb_spi_controller -log elaborate.log 
+Running: C:/X/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 47a609826b8c41dea463721b7144da2d --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot SPI_Control_behav xil_defaultlib.SPI_Control -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -11,8 +11,5 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling architecture rtl of entity xil_defaultlib.spi_controller [\spi_controller(n=16)\]
-Compiling architecture behavior of entity xil_defaultlib.clock_divider [\clock_divider(clk_freq=100)\]
-Compiling architecture behavioral of entity xil_defaultlib.FSM [fsm_default]
-Compiling architecture rtl of entity xil_defaultlib.tb_spi_controller
-Built simulation snapshot tb_spi_controller_behav
+Compiling architecture behavioral of entity xil_defaultlib.spi_control
+Built simulation snapshot SPI_Control_behav

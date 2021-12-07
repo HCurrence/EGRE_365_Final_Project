@@ -1,8 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/new/FSM.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'FSM'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/lab6_assignment_sources/clock_divider.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'clock_divider'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sources_1/imports/lab8_2019/spi_controller.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'spi_controller'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.srcs/sim_1/new/tb_spi_controller.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'tb_spi_controller'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/sources_1/new/SPI_Control.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SPI_Control'

@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="54" Path="C:/Users/micha/OneDrive/Documents/GitHub/EGRE_365_Final_Project/final_project.xpr">
+<Project Version="7" Minor="54" Path="C:/Users/hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="47a609826b8c41dea463721b7144da2d"/>
@@ -45,7 +45,7 @@
     <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="116"/>
+    <Option Name="WTXSimLaunchSim" Val="114"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -74,32 +74,34 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/imports/new/FSM.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/new/FSM.vhd">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../final_project_v2/final_project_v2.srcs/sources_1/new/FSM.vhd"/>
-          <Attr Name="ImportTime" Val="1638548368"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../final_project_v3/final_project_v3.srcs/sources_1/imports/sources_1/imports/new/FSM.vhd"/>
+          <Attr Name="ImportTime" Val="1638759134"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/lab6_assignment_sources/clock_divider.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/lab6_assignment_sources/clock_divider.vhd">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../lab_6_2/lab_6_2.srcs/sources_1/imports/lab6_assignment_sources/clock_divider.vhd"/>
-          <Attr Name="ImportTime" Val="1635049728"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../final_project_v3/final_project_v3.srcs/sources_1/imports/sources_1/imports/lab6_assignment_sources/clock_divider.vhd"/>
+          <Attr Name="ImportTime" Val="1638752879"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/lab8_2019/spi_controller.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/lab8_2019/spi_controller.vhd">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../lab_8/lab_8.srcs/sources_1/imports/lab8_2019/spi_controller.vhd"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../final_project_v3/final_project_v3.srcs/sources_1/imports/sources_1/imports/lab8_2019/spi_controller.vhd"/>
           <Attr Name="ImportTime" Val="1636651541"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/spi_fsm_toplevel_skeleton.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/new/spi_fsm_toplevel_skeleton.vhd">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../final_project_v3/final_project_v3.srcs/sources_1/imports/sources_1/new/spi_fsm_toplevel_skeleton.vhd"/>
+          <Attr Name="ImportTime" Val="1638830073"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -112,8 +114,10 @@
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
       <Filter Type="Constrs"/>
-      <File Path="$PPRDIR/Nexys4DDR_Master.xdc">
+      <File Path="$PSRCDIR/constrs_1/imports/final_project/Nexys4DDR_Master.xdc">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/Nexys4DDR_Master.xdc"/>
+          <Attr Name="ImportTime" Val="1638373154"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
@@ -124,8 +128,10 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sim_1/new/tb_spi_controller.vhd">
+      <File Path="$PSRCDIR/sim_1/imports/new/tb_spi_controller.vhd">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../final_project_v3/final_project_v3.srcs/sim_1/imports/new/tb_spi_controller.vhd"/>
+          <Attr Name="ImportTime" Val="1638829895"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -139,7 +145,6 @@
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="tb_spi_controller"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
-        <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SelectedSimModel" Val="rtl"/>
@@ -178,7 +183,7 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="15">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a100tcsg324-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true" AutoIncrementalDir="$PPRDIR/../../../../../hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/utils_1/imports/synth_1">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a100tcsg324-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
         <Step Id="synth_design"/>
@@ -188,7 +193,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" SynthRun="synth_1" IncludeInArchive="true" GenFullBitstream="true" AutoIncrementalDir="$PPRDIR/../../../../../hpcpe/Documents/VCU/EGRE 365/Labs/final_project/final_project.srcs/utils_1/imports/impl_1">
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" SynthRun="synth_1" IncludeInArchive="true" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
         <Step Id="init_design"/>
